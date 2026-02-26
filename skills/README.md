@@ -13,6 +13,7 @@ A comprehensive collection of coding best practices and skills for AI coding age
 | [Documentation](documentation.md)           | Comments, README templates, API docs, and ADRs                        |
 | [Testing](testing.md)                       | Unit/integration testing, mocking, and test organization              |
 | [Error Handling](error-handling.md)         | Error types, try-catch patterns, logging, and recovery                |
+| [Security](security.md)                     | Secure coding practices, authz checks, secret handling, and hardening |
 | [MVP Planning](mvp-planning.md)             | Define MVP scope, write user stories, and break work into executable tasks |
 | [Remmerdoc](remmerdoc.md)                   | Post-task completion notes for summary, validation, and follow-ups    |
 
@@ -57,6 +58,13 @@ Arrange â†’ Act â†’ Assert
 - Be specific (custom error types)
 - Log with context
 
+### Security
+
+- Validate all untrusted input at boundaries
+- Enforce least privilege and deny-by-default authorization
+- Keep secrets out of source and logs
+- Use parameterized queries and safe output encoding
+
 ### Task Management
 
 - Keep one active task
@@ -88,7 +96,6 @@ To add new skills:
 1. Create a markdown file in this directory
 2. Follow the existing format with overview, principles, and examples
 3. Update this README with the new skill
-
 
 
 

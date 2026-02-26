@@ -14,6 +14,13 @@ Capture what was done, why it was done, and what still needs attention while con
 - Before switching to a new task
 - Before ending a coding session
 
+## Where to Store
+
+- Follow project config in `remember.md`
+- Save one file per task in `docs/remmerdocs/`
+- Use naming: `YYYY-MM-DD-task-slug.md`
+- Start from `docs/remmerdocs/_template.md`
+
 ## Remmerdoc Template
 
 Use this template for every finished task:
@@ -94,4 +101,3 @@ Checkout failed silently on slow networks and users retried manually.
 ## Risks / Notes
 - Very slow networks may still fail after retries.
 ```
-

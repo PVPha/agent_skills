@@ -10,13 +10,38 @@ Reduce scope creep and delivery risk by forcing clear outcomes, measurable accep
 
 ## Workflow
 
-1. Clarify product outcome
-2. Define strict MVP scope
-3. Write user stories
-4. Refine and split stories
-5. Break stories into tasks
-6. Order by dependency and value
-7. Define delivery checkpoints
+1. Run project setup questions
+2. Clarify product outcome
+3. Define strict MVP scope
+4. Write user stories
+5. Refine and split stories
+6. Break stories into tasks
+7. Order by dependency and value
+8. Define delivery checkpoints
+
+## Step 0: Project Setup Questions
+
+When starting a new project, ask these questions first and fill the project spec document before MVP breakdown.
+
+Project spec template:
+
+- `docs/project-specs-mobile-app-template.md`
+
+Kickoff questions:
+
+1. What is the app name, primary platform (iOS/Android/both), and owner/team?
+2. What user problem are you solving and which user segment is the top priority?
+3. What are the top 3 goals for the first release, and what is explicitly out of scope?
+4. Which core user flows must work in MVP (for example onboarding, main task, notifications, settings)?
+5. What metrics define launch success (acquisition, retention, crash-free sessions, business target)?
+6. What constraints exist (deadline, budget, team size, required integrations, compliance)?
+7. What technical direction is preferred (native or cross-platform, minimum OS versions, backend dependencies)?
+8. What rollout strategy is expected (beta group size, phased rollout, rollback plan)?
+
+Output rule:
+
+- After answers are collected, generate a filled project spec using `docs/project-specs-mobile-app-template.md`.
+- Then continue with the MVP planning workflow using the same scope and success metrics.
 
 ## Step 1: Clarify Product Outcome
 
