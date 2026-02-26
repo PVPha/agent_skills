@@ -16,6 +16,8 @@ A comprehensive collection of coding best practices and skills for AI coding age
 | [Security](security.md)                     | Secure coding practices, authz checks, secret handling, and hardening |
 | [MVP Planning](mvp-planning.md)             | Define MVP scope, write user stories, and break work into executable tasks |
 | [Remmerdoc](remmerdoc.md)                   | Post-task completion notes for summary, validation, and follow-ups    |
+| [Clean Code](clean-code.md)                 | Practical rules for writing readable, maintainable, low-risk code      |
+| [Workflow Orchestration](workflow-orchestration.md) | Coordinate multi-step engineering workflows with dependencies, gates, and handoffs |
 
 ## Quick Reference
 
@@ -72,6 +74,12 @@ Arrange â†’ Act â†’ Assert
 - Work in short implement/verify loops
 - Keep queue and parking-lot notes
 
+### Workflow Orchestration
+
+- Define workflow stages with explicit exit criteria
+- Map dependencies before execution
+- Gate stage transitions with verification evidence
+
 ### MVP Planning
 
 - Define outcome and strict in/out scope
@@ -96,6 +104,4 @@ To add new skills:
 1. Create a markdown file in this directory
 2. Follow the existing format with overview, principles, and examples
 3. Update this README with the new skill
-
-
 
