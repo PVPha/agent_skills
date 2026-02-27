@@ -4,6 +4,14 @@
 
 Turn a project idea into a focused MVP plan, break scope into clear user stories, and decompose each story into executable engineering tasks.
 
+## Mode
+
+This is a planning-only skill.
+
+- Do not implement code, run implementation checks, or execute fix loops while using this skill.
+- Produce planning artifacts only (project spec, scope, stories, tasks, sequencing, checkpoints).
+- If implementation is requested, finish this planning output first, then ask for confirmation before switching to an implementation workflow.
+
 ## Purpose
 
 Reduce scope creep and delivery risk by forcing clear outcomes, measurable acceptance criteria, and small tasks that can be implemented and verified quickly.
@@ -41,7 +49,12 @@ Kickoff questions:
 Output rule:
 
 - After answers are collected, generate a filled project spec using `docs/project-specs-mobile-app-template.md`.
-- Then continue with the MVP planning workflow using the same scope and success metrics.
+- Then continue with the MVP planning workflow using the same scope and success metrics, starting at **Step 1: Clarify Product Outcome**.
+- Do not jump to coding, implementation checks, testing, or bug-fix actions in this skill.
+- Transition gate after Q&A:
+  1. Output `Project Spec (Filled)`.
+  2. Output `Step 1` through `Step 7` sections in order.
+  3. End with `Planning complete. Ready to implement if you want to proceed.`
 
 ## Step 1: Clarify Product Outcome
 
