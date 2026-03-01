@@ -1,3 +1,8 @@
+---
+name: clean-code
+description: Write readable, maintainable, low-risk code with clear structure and minimal complexity. Use when implementing or refactoring code and you need practical clean-code rules.
+---
+
 # Clean Code Skill
 
 ## Overview

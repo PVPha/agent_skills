@@ -1,3 +1,8 @@
+---
+name: documentation
+description: Produce developer documentation including comments, READMEs, API docs, and decision records. Use when documenting code, features, setup, operations, or design decisions.
+---
+
 # Documentation Skill
 
 ## Overview

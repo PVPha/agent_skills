@@ -1,3 +1,8 @@
+---
+name: naming-conventions
+description: Apply consistent naming conventions for variables, functions, classes, files, and APIs. Use when naming new code elements or refactoring unclear naming.
+---
+
 # Naming Conventions Skill
 
 ## Overview

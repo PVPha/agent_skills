@@ -1,3 +1,8 @@
+---
+name: testing
+description: Design and implement tests across unit, integration, and end-to-end layers with reliable assertions and maintainable structure. Use when adding, fixing, or improving test coverage.
+---
+
 # Testing Skill
 
 ## Overview

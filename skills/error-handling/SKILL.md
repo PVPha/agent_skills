@@ -1,3 +1,8 @@
+---
+name: error-handling
+description: Design robust error handling with clear user feedback, actionable logs, and safe recovery paths. Use when implementing exceptions, retries, validation, or failure handling.
+---
+
 # Error Handling Skill
 
 ## Overview

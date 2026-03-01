@@ -1,3 +1,8 @@
+---
+name: task-management
+description: Manage coding work in short, outcome-driven loops with clear done criteria, verification, and commit checkpoints. Use when executing development tasks with active queue control.
+---
+
 # Task Management Skill
 
 ## Overview
@@ -88,8 +93,23 @@ Repeat this loop per task:
 1. Clarify task and done criteria in 1-3 lines
 2. Implement smallest useful change
 3. Run nearest verification (test/lint/manual check)
-4. Commit or checkpoint with a short note
+4. Commit immediately after verification passes
 5. Update queue and pick next task
+
+### Commit Rules
+
+- Do not start the next task before committing the current one
+- Prefer small, single-purpose commits (one task = one commit)
+- Use non-interactive git commands
+- Follow `skills/commit-messages/SKILL.md` as the source of truth for message format
+- Commit format:
+
+```bash
+git add -A
+git commit -m "<type>(<scope>): <subject>" -m "<why this change was needed>"
+```
+
+- If verification fails, do not commit; fix or checkpoint separately
 
 ## Progress Logging
 
@@ -130,6 +150,7 @@ Before marking a task complete:
 - [ ] Obvious edge case handled
 - [ ] No debug code/log noise left behind
 - [ ] Tests or validation steps run
+- [ ] Commit created for this task
 - [ ] Commit message explains what changed and why
 
 ## Anti-Patterns to Avoid

@@ -1,3 +1,8 @@
+---
+name: commit-messages
+description: Write clear conventional commit messages with optional scope/body/footer. Use when creating commits, improving commit history quality, or enforcing commit format consistency.
+---
+
 # Commit Message Skill
 
 ## Overview

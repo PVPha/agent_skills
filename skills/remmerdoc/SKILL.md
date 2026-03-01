@@ -1,3 +1,8 @@
+---
+name: remmerdoc
+description: Create concise post-task remmerdocs capturing what changed, why, validation status, and follow-ups. Use immediately after finishing a task or before handoff.
+---
+
 # Remmerdoc Skill
 
 ## Overview

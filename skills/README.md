@@ -6,18 +6,18 @@ A comprehensive collection of coding best practices and skills for AI coding age
 
 | Skill                                       | Description                                                           |
 | ------------------------------------------- | --------------------------------------------------------------------- |
-| [Naming Conventions](naming-conventions.md) | Variable, function, class, and file naming standards across languages |
-| [Coding Standards](coding-standards.md)     | Code structure, formatting, control flow, and security basics         |
-| [Commit Messages](commit-messages.md)       | Conventional commits format, types, and best practices                |
-| [Code Review](code-review.md)               | Review mindset, feedback patterns, and checklists                     |
-| [Documentation](documentation.md)           | Comments, README templates, API docs, and ADRs                        |
-| [Testing](testing.md)                       | Unit/integration testing, mocking, and test organization              |
-| [Error Handling](error-handling.md)         | Error types, try-catch patterns, logging, and recovery                |
-| [Security](security.md)                     | Secure coding practices, authz checks, secret handling, and hardening |
-| [MVP Planning](mvp-planning.md)             | Define MVP scope, write user stories, and break work into executable tasks |
-| [Remmerdoc](remmerdoc.md)                   | Post-task completion notes for summary, validation, and follow-ups    |
-| [Clean Code](clean-code.md)                 | Practical rules for writing readable, maintainable, low-risk code      |
-| [Workflow Orchestration](workflow-orchestration.md) | Coordinate multi-step engineering workflows with dependencies, gates, and handoffs |
+| [Naming Conventions](naming-conventions/SKILL.md) | Variable, function, class, and file naming standards across languages |
+| [Coding Standards](coding-standards/SKILL.md)     | Code structure, formatting, control flow, and security basics         |
+| [Commit Messages](commit-messages/SKILL.md)       | Conventional commits format, types, and best practices                |
+| [Code Review](code-review/SKILL.md)               | Review mindset, feedback patterns, and checklists                     |
+| [Documentation](documentation/SKILL.md)           | Comments, README templates, API docs, and ADRs                        |
+| [Testing](testing/SKILL.md)                       | Unit/integration testing, mocking, and test organization              |
+| [Error Handling](error-handling/SKILL.md)         | Error types, try-catch patterns, logging, and recovery                |
+| [Security](security/SKILL.md)                     | Secure coding practices, authz checks, secret handling, and hardening |
+| [MVP Planning](mvp-planning/SKILL.md)             | Define MVP scope, write user stories, and break work into executable tasks |
+| [Remmerdoc](remmerdoc/SKILL.md)                   | Post-task completion notes for summary, validation, and follow-ups    |
+| [Clean Code](clean-code/SKILL.md)                 | Practical rules for writing readable, maintainable, low-risk code      |
+| [Workflow Orchestration](workflow-orchestration/SKILL.md) | Coordinate multi-step engineering workflows with dependencies, gates, and handoffs |
 
 ## Quick Reference
 

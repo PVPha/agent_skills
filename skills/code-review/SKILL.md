@@ -1,3 +1,8 @@
+---
+name: code-review
+description: Perform high-signal code reviews focused on bugs, regressions, risk, and maintainability. Use when reviewing pull requests, patches, or proposed code changes.
+---
+
 # Code Review Skill
 
 ## Overview

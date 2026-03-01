@@ -1,4 +1,9 @@
-﻿# MVP Planning Skill
+---
+name: mvp-planning
+description: Plan MVP scope, user stories, acceptance criteria, sequencing, and milestones without implementing code. Use when turning ideas into executable product and engineering plans.
+---
+
+# MVP Planning Skill
 
 ## Overview
 

@@ -1,3 +1,8 @@
+---
+name: coding-standards
+description: Apply coding standards for structure, style, consistency, and maintainability across codebases. Use when writing new code or normalizing existing code to team standards.
+---
+
 # Coding Standards Skill
 
 ## Overview

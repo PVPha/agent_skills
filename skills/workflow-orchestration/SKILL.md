@@ -1,3 +1,8 @@
+---
+name: workflow-orchestration
+description: Coordinate multi-step engineering workflows with dependency tracking, stage gates, and handoffs. Use when work spans planning, implementation, verification, and delivery phases.
+---
+
 # Workflow Orchestration Skill
 
 ## Overview
@@ -11,9 +16,9 @@ Reduce delivery risk in complex tasks by making dependencies explicit, enforcing
 ## Scope Boundaries
 
 - Use this skill for orchestration: sequencing, dependency control, stage transitions, and handoffs
-- For detailed task execution loops, use `task-management.md`
-- For code quality and elegance standards, use `clean-code.md`
-- For review depth and approval standards, use `code-review.md`
+- For detailed task execution loops, use `skills/task-management/SKILL.md`
+- For code quality and elegance standards, use `skills/clean-code/SKILL.md`
+- For review depth and approval standards, use `skills/code-review/SKILL.md`
 
 ## Workflow Orchestration Directives
 

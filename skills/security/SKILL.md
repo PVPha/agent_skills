@@ -1,3 +1,8 @@
+---
+name: security
+description: Apply secure-by-default engineering practices for input validation, authz, secrets, dependencies, and hardening. Use when designing, implementing, or reviewing security-sensitive code.
+---
+
 # Security Skill
 
 ## Overview
