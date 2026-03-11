@@ -139,11 +139,12 @@ Repeat this loop per task:
 2. Implement smallest useful change
 3. Run nearest verification (test/lint/manual check)
 4. Commit immediately after verification passes
-5. Update queue and pick next task
+5. Write remmerdoc per `skills/remmerdoc/SKILL.md`
+6. Update queue and pick next task
 
 ### Commit Rules
 
-- Do not start the next task before committing the current one
+- Do not start the next task before committing the current one and writing remmerdoc
 - Prefer small, single-purpose commits (one task = one commit)
 - Use non-interactive git commands
 - Follow `skills/commit-messages/SKILL.md` as the source of truth for message format
@@ -197,6 +198,7 @@ Before marking a task complete:
 - [ ] Tests or validation steps run
 - [ ] Commit created for this task
 - [ ] Commit message explains what changed and why
+- [ ] Remmerdoc created in `docs/remmerdocs/YYYY-MM-DD-task-slug.md`
 
 ## Anti-Patterns to Avoid
 
