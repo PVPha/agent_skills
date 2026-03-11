@@ -1,4 +1,4 @@
-﻿# Agent Coding Skills
+# Agent Coding Skills
 
 A comprehensive collection of coding best practices and skills for AI coding agents.
 
@@ -41,16 +41,16 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`
 
 ### Code Review Markers
 
-- ðŸ”´ Required (blocking)
-- ðŸ’¡ Suggestion (non-blocking)
-- â“ Question
-- âœ¨ Praise
-- ðŸ”§ Nitpick
+- 🔴 Required (blocking)
+- 💡 Suggestion (non-blocking)
+- ❓ Question
+- ✨ Praise
+- 🔧 Nitpick
 
 ### Testing Pattern
 
 ```
-Arrange â†’ Act â†’ Assert
+Arrange → Act → Assert
 ```
 
 ### Error Handling
@@ -93,6 +93,24 @@ Arrange â†’ Act â†’ Assert
 - Capture files changed, verification, and decisions
 - List follow-up items and known risks
 
+## Recommended Workflow
+
+Use this sequence to combine the skills into one delivery flow:
+
+1. Define outcome and scope with [MVP Planning](mvp-planning/SKILL.md).
+2. Design stages, dependencies, and gates with [Workflow Orchestration](workflow-orchestration/SKILL.md).
+3. Execute one active task at a time using [Task Management](task-management/SKILL.md).
+4. Apply implementation quality skills while coding:
+   [Naming Conventions](naming-conventions/SKILL.md),
+   [Coding Standards](coding-standards/SKILL.md),
+   [Clean Code](clean-code/SKILL.md),
+   [Error Handling](error-handling/SKILL.md),
+   [Security](security/SKILL.md).
+5. Verify with [Testing](testing/SKILL.md) and review with [Code Review](code-review/SKILL.md).
+6. Commit per [Commit Messages](commit-messages/SKILL.md).
+7. Document outcome in `docs/remmerdocs/` via [Remmerdoc](remmerdoc/SKILL.md).
+8. Update user/developer docs with [Documentation](documentation/SKILL.md) when behavior changes.
+
 ## Usage
 
 These skills can be loaded as context for AI agents to improve code quality consistently. Each skill file is self-contained with examples in multiple programming languages.
@@ -104,4 +122,3 @@ To add new skills:
 1. Create a markdown file in this directory
 2. Follow the existing format with overview, principles, and examples
 3. Update this README with the new skill
-
