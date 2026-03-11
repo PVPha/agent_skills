@@ -21,10 +21,11 @@ Capture what was done, why it was done, and what still needs attention while con
 
 ## Where to Store
 
-- Follow project config in `remember.md`
+- This skill is the config source of truth for remmerdocs in this project
 - Save one file per task in `docs/remmerdocs/`
 - Use naming: `YYYY-MM-DD-task-slug.md`
 - Start from `docs/remmerdocs/_template.md`
+- Keep entries short and factual
 
 ## Remmerdoc Template
 

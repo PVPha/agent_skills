@@ -99,7 +99,7 @@ Note: <single factual line>
 Next: <immediate next action>
 ```
 
-When marked `Done`, store persistent notes per `remember.md` rules (`docs/remmerdocs/YYYY-MM-DD-task-slug.md`).
+When marked `Done`, store persistent notes per `skills/remmerdoc/SKILL.md` rules (`docs/remmerdocs/YYYY-MM-DD-task-slug.md`).
 
 ## Task Sizing for Vibe Coding
 
