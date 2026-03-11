@@ -56,6 +56,51 @@ Use this at the start of a coding session:
 - <idea not for now>
 ```
 
+## Register New Task
+
+When a new task appears during a session, register it immediately in the session board:
+
+1. If no active task exists, put it in `Active Task`
+2. If another task is active, append it to `Queue`
+3. If it is useful but not actionable now, add it to `Parking Lot`
+
+For each newly registered task, capture a one-line definition:
+
+- Outcome: expected user/system change
+- Constraints: key limits or non-goals
+- Verification: fastest proof it works
+
+Quick registration template:
+
+```md
+Task: <short task title>
+Outcome: <what changes>
+Constraints: <limits>
+Verification: <test/manual/log check>
+```
+
+Use `Queue` as the source of truth for upcoming work. Do not create hidden TODO lists outside this board.
+
+## Update Task
+
+Update task state whenever work status changes, using short factual entries:
+
+1. `Start`: move selected queue item into `Active Task`
+2. `Progress`: log notable milestone or scope adjustment
+3. `Blocked`: record blocker and either un-block or defer
+4. `Done`: verify, commit, then remove from `Active Task` and pull next from `Queue`
+
+Status update template:
+
+```md
+[HH:MM] Task: <task title>
+Status: Start | Progress | Blocked | Done
+Note: <single factual line>
+Next: <immediate next action>
+```
+
+When marked `Done`, store persistent notes per `remember.md` rules (`docs/remmerdocs/YYYY-MM-DD-task-slug.md`).
+
 ## Task Sizing for Vibe Coding
 
 Split tasks into small units that can finish in 15-60 minutes:
@@ -177,4 +222,3 @@ Queue:
 Parking Lot:
 - Consider circuit breaker for payment provider
 ```
-

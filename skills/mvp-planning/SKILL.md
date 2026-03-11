@@ -36,24 +36,70 @@ Reduce scope creep and delivery risk by forcing clear outcomes, measurable accep
 
 When starting a new project, ask these questions first and fill the project spec document before MVP breakdown.
 
-Project spec template:
+Project spec template (in-skill):
 
-- `docs/project-specs-mobile-app-template.md`
+```md
+# Project Spec
+
+## Product Basics
+- Product name:
+- Product type: Web app | Mobile app | API/service | Desktop app | Other
+- Primary platforms/channels:
+- Owner/team:
+
+## Problem and Users
+- Primary user segment:
+- Core user problem:
+
+## Release Goals
+- Goal 1:
+- Goal 2:
+- Goal 3:
+- Explicitly out of scope:
+
+## Core MVP Flows
+- Flow 1:
+- Flow 2:
+- Flow 3:
+
+## Success Metrics
+- Acquisition:
+- Retention:
+- Quality (for example crash-free sessions):
+- Business target:
+
+## Constraints
+- Deadline:
+- Budget:
+- Team size:
+- Required integrations:
+- Compliance/security constraints:
+
+## Technical Direction
+- Architecture style:
+- Runtime/platform constraints:
+- Backend dependencies:
+
+## Rollout Plan
+- Beta group size:
+- Phased rollout plan:
+- Rollback plan:
+```
 
 Kickoff questions:
 
-1. What is the app name, primary platform (iOS/Android/both), and owner/team?
+1. What is the product name, product type, primary platforms/channels, and owner/team?
 2. What user problem are you solving and which user segment is the top priority?
 3. What are the top 3 goals for the first release, and what is explicitly out of scope?
-4. Which core user flows must work in MVP (for example onboarding, main task, notifications, settings)?
+4. Which core user flows must work in MVP (for example signup, primary action, reporting, admin/settings)?
 5. What metrics define launch success (acquisition, retention, crash-free sessions, business target)?
 6. What constraints exist (deadline, budget, team size, required integrations, compliance)?
-7. What technical direction is preferred (native or cross-platform, minimum OS versions, backend dependencies)?
+7. What technical direction is preferred (architecture style, platform/runtime constraints, backend dependencies)?
 8. What rollout strategy is expected (beta group size, phased rollout, rollback plan)?
 
 Output rule:
 
-- After answers are collected, generate a filled project spec using `docs/project-specs-mobile-app-template.md`.
+- After answers are collected, generate a filled project spec using the in-skill `Project Spec` template above.
 - Then continue with the MVP planning workflow using the same scope and success metrics, starting at **Step 1: Clarify Product Outcome**.
 - Do not jump to coding, implementation checks, testing, or bug-fix actions in this skill.
 - Transition gate after Q&A:
