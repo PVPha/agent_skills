@@ -9,12 +9,26 @@ description: Write clear conventional commit messages with optional scope/body/f
 
 Write clear, consistent commit messages that explain what changed and why. Good commit history makes debugging, reviewing, and understanding code evolution easier.
 
+## Default Behavior
+
+Default to gitmoji + conventional commits when writing commit messages:
+
+```
+<emoji> <type>(<scope>): <subject>
+```
+
+Example:
+
+```
+✨ feat(auth): add OAuth2 login with Google
+```
+
 ## Commit Message Format
 
 ### Structure
 
 ```
-<type>(<scope>): <subject>
+<emoji> <type>(<scope>): <subject>
 
 [optional body]
 
