@@ -47,6 +47,7 @@ Use this at the start of a coding session:
 - [ ] Tests updated/passing
 - [ ] Edge cases considered
 - [ ] Docs/changelog updated (if needed)
+- [ ] Remmerdoc created and path recorded
 
 ## Queue
 1. <next task>
@@ -100,6 +101,7 @@ Next: <immediate next action>
 ```
 
 When marked `Done`, store persistent notes per `skills/remmerdoc/SKILL.md` rules (`docs/remmerdocs/YYYY-MM-DD-task-slug.md`).
+Record the created remmerdoc path in `tasks/todo.md` before moving the next queued item into `Active Task`.
 
 Treat a user message like "move to next task", "next task", or equivalent as a transition request, not as permission to skip finish steps. Before changing `Active Task`, finish the current task closure sequence unless the user explicitly says to abandon or defer it.
 
@@ -170,9 +172,10 @@ Use this exact order whenever a task is complete or the user asks to move on:
 2. Fix any issues found during self-review
 3. Run verification and record the result
 4. Write remmerdoc
-5. Stage all task-related changes
-6. Commit all staged task-related changes
-7. Only then select the next task
+5. Record the remmerdoc path in `tasks/todo.md`
+6. Stage all task-related changes
+7. Commit all staged task-related changes
+8. Only then select the next task
 
 ## Progress Logging
 
@@ -217,6 +220,7 @@ Before marking a task complete:
 - [ ] Commit created for this task
 - [ ] Commit message explains what changed and why
 - [ ] Remmerdoc created in `docs/remmerdocs/YYYY-MM-DD-task-slug.md`
+- [ ] Remmerdoc path recorded in `tasks/todo.md`
 
 ## Anti-Patterns to Avoid
 

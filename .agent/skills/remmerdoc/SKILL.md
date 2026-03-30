@@ -18,6 +18,7 @@ Capture what was done, why it was done, and what still needs attention while con
 - Right after code/testing is complete
 - Before switching to a new task
 - Before ending a coding session
+- Before changing `Active Task` in `tasks/todo.md`
 
 ## Where to Store
 
@@ -66,6 +67,7 @@ Use this template for every finished task:
 - Record facts, not guesses
 - Include exact file paths when possible
 - List unresolved items explicitly
+- After writing the file, record its path in `tasks/todo.md` so task handoff is visible from the session board
 
 ## Quality Checklist
 

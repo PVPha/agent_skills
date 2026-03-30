@@ -57,6 +57,7 @@ Reduce delivery risk in complex tasks by making dependencies explicit, enforcing
 - Run self-review against `skills/code-review/SKILL.md` before leaving the current task
 - Stage and commit all task-related changes after verification passes
 - Write remmerdoc before handoff or queue advancement
+- Record the remmerdoc path in `tasks/todo.md` before queue advancement
 - If any gate fails, stay on the current task and resolve the gap first
 
 ### 5. Demand Elegance (Balanced)
@@ -194,6 +195,7 @@ Gate checklist:
 - [ ] Self-review completed
 - [ ] Tests/checks executed and reviewed
 - [ ] Evidence captured in workflow notes
+- [ ] Remmerdoc path recorded in `tasks/todo.md`
 - [ ] Task-related changes committed
 - [ ] Rollback or mitigation path defined
 - [ ] Risks documented

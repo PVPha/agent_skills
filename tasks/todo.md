@@ -9,6 +9,7 @@
 - [ ] Tests updated/passing
 - [ ] Edge cases considered
 - [ ] Docs/changelog updated (if needed)
+- [ ] Remmerdoc created and path recorded
 
 ## Queue
 1. <next task>
@@ -32,3 +33,4 @@ Verification: <test/manual/log check>
 Status: Start | Progress | Blocked | Done
 Note: <single factual line>
 Next: <immediate next action>
+Remmerdoc: <docs/remmerdocs/YYYY-MM-DD-task-slug.md or pending>
