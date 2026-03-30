@@ -46,9 +46,18 @@ Reduce delivery risk in complex tasks by making dependencies explicit, enforcing
 ### 4. Verification Before Done
 
 - Never mark a task complete without evidence it works
+- Never transition to the next task without closing the current one with self-review, verification evidence, and a commit unless the user explicitly asks to defer it
 - Diff behavior between main and current changes when relevant
 - Run tests/checks and inspect logs when relevant
 - Record objective evidence in the workflow state or handoff notes
+
+### 4a. Transition Gate
+
+- Treat "move to next task" as a stage-gate check
+- Run self-review against `skills/code-review/SKILL.md` before leaving the current task
+- Stage and commit all task-related changes after verification passes
+- Write remmerdoc before handoff or queue advancement
+- If any gate fails, stay on the current task and resolve the gap first
 
 ### 5. Demand Elegance (Balanced)
 
@@ -182,8 +191,10 @@ Before progressing to release/handoff:
 Gate checklist:
 
 - [ ] Acceptance criteria met
+- [ ] Self-review completed
 - [ ] Tests/checks executed and reviewed
 - [ ] Evidence captured in workflow notes
+- [ ] Task-related changes committed
 - [ ] Rollback or mitigation path defined
 - [ ] Risks documented
 

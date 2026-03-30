@@ -88,7 +88,7 @@ Update task state whenever work status changes, using short factual entries:
 1. `Start`: move selected queue item into `Active Task`
 2. `Progress`: log notable milestone or scope adjustment
 3. `Blocked`: record blocker and either un-block or defer
-4. `Done`: verify, commit, then remove from `Active Task` and pull next from `Queue`
+4. `Done`: self-review, verify, write remmerdoc, commit, then remove from `Active Task` and pull next from `Queue`
 
 Status update template:
 
@@ -100,6 +100,8 @@ Next: <immediate next action>
 ```
 
 When marked `Done`, store persistent notes per `skills/remmerdoc/SKILL.md` rules (`docs/remmerdocs/YYYY-MM-DD-task-slug.md`).
+
+Treat a user message like "move to next task", "next task", or equivalent as a transition request, not as permission to skip finish steps. Before changing `Active Task`, finish the current task closure sequence unless the user explicitly says to abandon or defer it.
 
 ## Task Sizing for Vibe Coding
 
@@ -137,14 +139,17 @@ Repeat this loop per task:
 
 1. Clarify task and done criteria in 1-3 lines
 2. Implement smallest useful change
-3. Run nearest verification (test/lint/manual check)
-4. Commit immediately after verification passes
+3. Self-review the diff using `skills/code-review/SKILL.md` with emphasis on correctness, regressions, edge cases, and missing tests
+4. Run nearest verification (test/lint/manual check)
 5. Write remmerdoc per `skills/remmerdoc/SKILL.md`
-6. Update queue and pick next task
+6. Commit immediately after self-review and verification pass
+7. Update queue and pick next task
 
 ### Commit Rules
 
-- Do not start the next task before committing the current one and writing remmerdoc
+- Do not start the next task before self-reviewing, verifying, writing remmerdoc, and committing the current one
+- If the user asks to move to the next task, first run the current task through the full closure sequence
+- If a task is done and the worktree contains task-related changes, stage and commit all of those changes before advancing
 - Prefer small, single-purpose commits (one task = one commit)
 - Use non-interactive git commands
 - Follow `skills/commit-messages/SKILL.md` as the source of truth for message format
@@ -156,6 +161,18 @@ git commit -m "<type>(<scope>): <subject>" -m "<why this change was needed>"
 ```
 
 - If verification fails, do not commit; fix or checkpoint separately
+
+### Task Closure Sequence
+
+Use this exact order whenever a task is complete or the user asks to move on:
+
+1. Review your own diff against `skills/code-review/SKILL.md`
+2. Fix any issues found during self-review
+3. Run verification and record the result
+4. Write remmerdoc
+5. Stage all task-related changes
+6. Commit all staged task-related changes
+7. Only then select the next task
 
 ## Progress Logging
 
@@ -195,6 +212,7 @@ Before marking a task complete:
 - [ ] Behavior works for main flow
 - [ ] Obvious edge case handled
 - [ ] No debug code/log noise left behind
+- [ ] Self-review completed
 - [ ] Tests or validation steps run
 - [ ] Commit created for this task
 - [ ] Commit message explains what changed and why

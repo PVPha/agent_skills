@@ -240,6 +240,15 @@ See benchmark results: [link]. Open to other suggestions though!"
 - [ ] Write clear PR description
 - [ ] Keep changes focused and reasonably sized
 
+## Self-Review for Task Closure
+
+When finishing your own task or when the user asks to move to the next task:
+
+- Review the full diff before advancing
+- Check for correctness, regressions, missing edge cases, and missing verification
+- Fix review findings before creating the commit
+- Do not treat commit creation as complete until self-review is done
+
 ### PR Size Guidelines
 | Size | Lines Changed | Review Time |
 |------|--------------|-------------|
