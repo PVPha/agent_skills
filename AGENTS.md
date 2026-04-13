@@ -16,6 +16,17 @@ If no skill matches, announce: `Using skill(s): none | source=.agent/skills/`
 
 If this line is missing, treat the run as invalid and retry.
 
+## Commit Gate Contract (required after every task closure)
+
+After every `git commit` that closes a task, output this line before proceeding:
+
+`COMMIT_GATE: PASS | hash=<full commit sha> | task=<task title>`
+
+- Hash must be the real SHA from `git commit` output — no placeholders
+- If commit was skipped: `COMMIT_GATE: SKIP | reason=<why>` (only valid when `git status` is clean)
+- If commit cannot run: `COMMIT_GATE: FAIL | reason=<why>` — do not advance to the next task
+- A response naming the next task while missing `COMMIT_GATE: PASS` is an invalid transition
+
 ---
 
 ## Skill Selection Guide
