@@ -18,11 +18,13 @@ If this line is missing, treat the run as invalid and retry.
 
 ## Commit Gate Contract (required after every task closure)
 
-After every `git commit` that closes a task, output this line before proceeding:
+After every task closure (commit + amend), output this line before proceeding:
 
-`COMMIT_GATE: PASS | hash=<full commit sha> | task=<task title>`
+`COMMIT_GATE: PASS | hash=<amended sha> | task=<task title> | remmerdoc=<path>`
 
-- Hash must be the real SHA from `git commit` output — no placeholders
+- Hash must be the real SHA from `git commit --amend` output — no placeholders
+- Remmerdoc path must point to the file written before the commit
+- The amend flow: `git add -A && git commit` → write hash into remmerdoc `## Commit` → `git add <remmerdoc> && git commit --amend --no-edit`
 - If commit was skipped: `COMMIT_GATE: SKIP | reason=<why>` (only valid when `git status` is clean)
 - If commit cannot run: `COMMIT_GATE: FAIL | reason=<why>` — do not advance to the next task
 - A response naming the next task while missing `COMMIT_GATE: PASS` is an invalid transition
