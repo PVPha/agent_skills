@@ -239,15 +239,19 @@ Capture:
 
 ```md
 Ready:
+
 - WF-1 ...
 
 In Progress:
+
 - WF-2 ...
 
 Blocked:
+
 - WF-3 ... (blocked by WF-1 output)
 
 Done:
+
 - WF-0 ...
 ```
 
@@ -266,11 +270,12 @@ Gate: Stage 4 -> Stage 5
 Date:
 Decision: pass | fail
 Evidence:
+
 - test:
 - logs:
 - diff/demo:
-Risks accepted:
-Owner:
+  Risks accepted:
+  Owner:
 ```
 
 ## Failure Handling Rules
