@@ -3,15 +3,69 @@
 Before any analysis, plan, tool call, or code edit, the agent must:
 
 1. Read skills only from `.agent/skills/` (no skill discovery scan).
-2. Select matching skill(s) from the user request using files in `.agent/skills/`.
+2. Select matching skill(s) from the user request using the table below.
 3. Open each selected `SKILL.md`.
-4. Announce: `Using skill(s): <names> | source=.agent/skills/`.
+4. Announce: `Using skill(s): <names> | source=.agent/skills/`
 
 If step 1-4 is not completed, the agent must stop and do it first.
-If no skill matches, announce: `Using skill(s): none | source=.agent/skills/`.
+If no skill matches, announce: `Using skill(s): none | source=.agent/skills/`
 
 ## Output Contract (first line required)
 
 `SKILL_GATE: PASS | skills=<...>`
 
 If this line is missing, treat the run as invalid and retry.
+
+---
+
+## Skill Selection Guide
+
+Use this table to select skills from the user request. When multiple rows match, load all relevant skills.
+
+| Trigger / Request Type                                      | Load These Skills                                                      |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------- |
+| New feature, product, or project scoping                    | `mvp-planning`                                                         |
+| Multi-step work with dependencies or stages                 | `workflow-orchestration`, `task-management`, `remmerdoc`               |
+| Any code implementation or editing                          | `coding-standards`, `clean-code`                                       |
+| Naming variables, functions, files, or APIs                 | `naming-conventions`                                                   |
+| Handling errors, retries, or failure paths                  | `error-handling`                                                       |
+| Authentication, authorization, secrets, or input validation | `security`                                                             |
+| Writing or running tests                                    | `testing`                                                              |
+| Reviewing a pull request or diff                            | `code-review`                                                          |
+| Writing commits                                             | `commit-messages`                                                      |
+| Writing docs, READMEs, comments, or ADRs                    | `documentation`                                                        |
+| Finishing a task or switching to the next task              | `remmerdoc`, `task-management`                                         |
+| Refactoring or improving existing code                      | `clean-code`, `coding-standards`, `code-review`                        |
+
+### Default co-loading rules
+
+These skill combinations must always be loaded together:
+
+- `workflow-orchestration` → always co-load `task-management` + `remmerdoc`
+- `task-management` → always co-load `remmerdoc`
+- Any code change → always co-load `coding-standards` + `clean-code`
+- Closing a task → always co-load `remmerdoc` + `task-management`
+
+### Quick examples
+
+- "Build a login feature" → `mvp-planning`, `workflow-orchestration`, `task-management`, `remmerdoc`, `coding-standards`, `clean-code`, `security`
+- "Refactor the payment module" → `clean-code`, `coding-standards`, `code-review`, `task-management`, `remmerdoc`
+- "Review this PR" → `code-review`
+- "Write a commit message" → `commit-messages`
+- "Fix this bug" → `clean-code`, `error-handling`, `task-management`, `remmerdoc`
+
+---
+
+## Environment and Tooling
+
+Before executing any task, confirm the following project commands. If not already known, check `package.json`, `Makefile`, or project README.
+
+| Action     | Default command (override per project)  |
+| ---------- | --------------------------------------- |
+| Run tests  | `npm test` / `pytest` / `go test ./...` |
+| Lint       | `npm run lint` / `ruff check .`         |
+| Type check | `npm run typecheck` / `mypy .`          |
+| Build      | `npm run build` / `make build`          |
+| Format     | `npm run format` / `ruff format .`      |
+
+Verification steps in `task-management` and `workflow-orchestration` skills refer to these commands. Always run the nearest applicable check before marking a task done.
