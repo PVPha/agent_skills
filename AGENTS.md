@@ -20,11 +20,11 @@ If this line is missing, treat the run as invalid and retry.
 
 After every task closure (commit + amend), output this line before proceeding:
 
-`COMMIT_GATE: PASS | hash=<amended sha> | task=<task title> | remmerdoc=<path>`
+`COMMIT_GATE: PASS | hash=<amended sha> | task=<task title> | rememberDoc=<path>`
 
 - Hash must be the real SHA from `git commit --amend` output — no placeholders
-- Remmerdoc path must point to the file written before the commit
-- The amend flow: `git add -A && git commit` → write hash into remmerdoc `## Commit` → `git add <remmerdoc> && git commit --amend --no-edit`
+- RememberDoc path must point to the file written before the commit
+- The amend flow: `git add -A && git commit` → write hash into rememberDoc `## Commit` → `git add <rememberDoc> && git commit --amend --no-edit`
 - If commit was skipped: `COMMIT_GATE: SKIP | reason=<why>` (only valid when `git status` is clean)
 - If commit cannot run: `COMMIT_GATE: FAIL | reason=<why>` — do not advance to the next task
 - A response naming the next task while missing `COMMIT_GATE: PASS` is an invalid transition
@@ -38,7 +38,7 @@ Use this table to select skills from the user request. When multiple rows match,
 | Trigger / Request Type                                      | Load These Skills                                                      |
 | ----------------------------------------------------------- | ---------------------------------------------------------------------- |
 | New feature, product, or project scoping                    | `mvp-planning`                                                         |
-| Multi-step work with dependencies or stages                 | `workflow-orchestration`, `task-management`, `remmerdoc`               |
+| Multi-step work with dependencies or stages                 | `workflow-orchestration`, `task-management`, `rememberDoc`             |
 | Any code implementation or editing                          | `coding-standards`, `clean-code`                                       |
 | Naming variables, functions, files, or APIs                 | `naming-conventions`                                                   |
 | Handling errors, retries, or failure paths                  | `error-handling`                                                       |
@@ -47,25 +47,25 @@ Use this table to select skills from the user request. When multiple rows match,
 | Reviewing a pull request or diff                            | `code-review`                                                          |
 | Writing commits                                             | `commit-messages`                                                      |
 | Writing docs, READMEs, comments, or ADRs                    | `documentation`                                                        |
-| Finishing a task or switching to the next task              | `remmerdoc`, `task-management`                                         |
+| Finishing a task or switching to the next task              | `rememberDoc`, `task-management`                                       |
 | Refactoring or improving existing code                      | `clean-code`, `coding-standards`, `code-review`                        |
 
 ### Default co-loading rules
 
 These skill combinations must always be loaded together:
 
-- `workflow-orchestration` → always co-load `task-management` + `remmerdoc`
-- `task-management` → always co-load `remmerdoc`
+- `workflow-orchestration` → always co-load `task-management` + `rememberDoc`
+- `task-management` → always co-load `rememberDoc`
 - Any code change → always co-load `coding-standards` + `clean-code`
-- Closing a task → always co-load `remmerdoc` + `task-management`
+- Closing a task → always co-load `rememberDoc` + `task-management`
 
 ### Quick examples
 
-- "Build a login feature" → `mvp-planning`, `workflow-orchestration`, `task-management`, `remmerdoc`, `coding-standards`, `clean-code`, `security`
-- "Refactor the payment module" → `clean-code`, `coding-standards`, `code-review`, `task-management`, `remmerdoc`
+- "Build a login feature" → `mvp-planning`, `workflow-orchestration`, `task-management`, `rememberDoc`, `coding-standards`, `clean-code`, `security`
+- "Refactor the payment module" → `clean-code`, `coding-standards`, `code-review`, `task-management`, `rememberDoc`
 - "Review this PR" → `code-review`
 - "Write a commit message" → `commit-messages`
-- "Fix this bug" → `clean-code`, `error-handling`, `task-management`, `remmerdoc`
+- "Fix this bug" → `clean-code`, `error-handling`, `task-management`, `rememberDoc`
 
 ---
 

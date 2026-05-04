@@ -15,7 +15,7 @@ A comprehensive collection of coding best practices and skills for AI coding age
 | [Error Handling](error-handling/SKILL.md)         | Error types, try-catch patterns, logging, and recovery                |
 | [Security](security/SKILL.md)                     | Secure coding practices, authz checks, secret handling, and hardening |
 | [MVP Planning](mvp-planning/SKILL.md)             | Define MVP scope, write user stories, and break work into executable tasks |
-| [Remmerdoc](remmerdoc/SKILL.md)                   | Post-task completion notes for summary, validation, and follow-ups    |
+| [RememberDoc](rememberDoc/SKILL.md)                   | Post-task completion notes for summary, validation, and follow-ups     |
 | [Clean Code](clean-code/SKILL.md)                 | Practical rules for writing readable, maintainable, low-risk code      |
 | [Workflow Orchestration](workflow-orchestration/SKILL.md) | Coordinate multi-step engineering workflows with dependencies, gates, and handoffs |
 
@@ -87,7 +87,7 @@ Arrange → Act → Assert
 - Refine and split stories into clear, testable user outcomes
 - Break each story into 2-8 hour tasks
 
-### Remmerdoc
+### RememberDoc
 
 - Write a short post-task record after finishing work
 - Capture files changed, verification, and decisions
@@ -108,7 +108,7 @@ Use this sequence to combine the skills into one delivery flow:
    [Security](security/SKILL.md).
 5. Verify with [Testing](testing/SKILL.md) and review with [Code Review](code-review/SKILL.md).
 6. Commit per [Commit Messages](commit-messages/SKILL.md).
-7. Document outcome in `docs/remmerdocs/` via [Remmerdoc](remmerdoc/SKILL.md).
+7. Document outcome in `docs/rememberDocs/` via [RememberDoc](rememberDoc/SKILL.md).
 8. Update user/developer docs with [Documentation](documentation/SKILL.md) when behavior changes.
 
 ## Usage

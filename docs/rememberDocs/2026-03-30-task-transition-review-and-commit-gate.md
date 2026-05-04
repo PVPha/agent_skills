@@ -1,7 +1,7 @@
-# Remmerdoc: Task transition review and commit gate
+# RememberDoc: Task transition review and commit gate
 
 ## Summary
-Updated the workflow skills so task completion and "move to next task" transitions require self-review, verification, remmerdoc creation, and commit before advancing.
+Updated the workflow skills so task completion and "move to next task" transitions require self-review, verification, rememberDoc creation, and commit before advancing.
 
 ## Why
 The existing workflow required commit-before-next-task, but it did not explicitly enforce a self-review gate or define the exact closure sequence when the user asks to move on.

@@ -1,4 +1,4 @@
-# Remmerdoc: Agent setup improvements
+# RememberDoc: Agent setup improvements
 
 ## Summary
 Addressed six gaps identified in the agent setup feedback: skill-matching guidance, co-loading rules, live task board, filled MVP plan, dev-environment skill, and README updates to reflect all changes.

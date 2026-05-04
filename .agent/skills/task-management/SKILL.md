@@ -47,7 +47,7 @@ Use this at the start of a coding session:
 - [ ] Tests updated/passing
 - [ ] Edge cases considered
 - [ ] Docs/changelog updated (if needed)
-- [ ] Remmerdoc created and path recorded
+- [ ] RememberDoc created and path recorded
 
 ## Queue
 1. <next task>
@@ -89,7 +89,7 @@ Update task state whenever work status changes, using short factual entries:
 1. `Start`: move selected queue item into `Active Task`
 2. `Progress`: log notable milestone or scope adjustment
 3. `Blocked`: record blocker and either un-block or defer
-4. `Done`: self-review, verify, write remmerdoc, commit, then remove from `Active Task` and pull next from `Queue`
+4. `Done`: self-review, verify, write rememberDoc, commit, then remove from `Active Task` and pull next from `Queue`
 
 Status update template:
 
@@ -100,8 +100,8 @@ Note: <single factual line>
 Next: <immediate next action>
 ```
 
-When marked `Done`, store persistent notes per `skills/remmerdoc/SKILL.md` rules (`docs/remmerdocs/YYYY-MM-DD-task-slug.md`).
-Record the created remmerdoc path in `tasks/todo.md` before moving the next queued item into `Active Task`.
+When marked `Done`, store persistent notes per `skills/rememberDoc/SKILL.md` rules (`docs/rememberDocs/YYYY-MM-DD-task-slug.md`).
+Record the created rememberDoc path in `tasks/todo.md` before moving the next queued item into `Active Task`.
 
 Treat a user message like "move to next task", "next task", or equivalent as a transition request, not as permission to skip finish steps. Before changing `Active Task`, finish the current task closure sequence unless the user explicitly says to abandon or defer it.
 
@@ -143,13 +143,13 @@ Repeat this loop per task:
 2. Implement smallest useful change
 3. Self-review the diff using `skills/code-review/SKILL.md` with emphasis on correctness, regressions, edge cases, and missing tests
 4. Run nearest verification (test/lint/manual check)
-5. Write remmerdoc per `skills/remmerdoc/SKILL.md`
+5. Write rememberDoc per `skills/rememberDoc/SKILL.md`
 6. Commit immediately after self-review and verification pass
 7. Update queue and pick next task
 
 ### Commit Rules
 
-- Do not start the next task before self-reviewing, verifying, writing remmerdoc, and committing the current one
+- Do not start the next task before self-reviewing, verifying, writing rememberDoc, and committing the current one
 - If the user asks to move to the next task, first run the current task through the full closure sequence
 - If a task is done and the worktree contains task-related changes, stage and commit all of those changes before advancing
 - Prefer small, single-purpose commits (one task = one commit)
@@ -171,8 +171,8 @@ Use this exact order whenever a task is complete or the user asks to move on:
 1. Review your own diff against `skills/code-review/SKILL.md`
 2. Fix any issues found during self-review
 3. Run verification and record the result
-4. Write remmerdoc
-5. Record the remmerdoc path in `tasks/todo.md`
+4. Write rememberDoc
+5. Record the rememberDoc path in `tasks/todo.md`
 6. Stage all task-related changes
 7. Commit all staged task-related changes
 8. Only then select the next task
@@ -219,8 +219,8 @@ Before marking a task complete:
 - [ ] Tests or validation steps run
 - [ ] Commit created for this task
 - [ ] Commit message explains what changed and why
-- [ ] Remmerdoc created in `docs/remmerdocs/YYYY-MM-DD-task-slug.md`
-- [ ] Remmerdoc path recorded in `tasks/todo.md`
+- [ ] RememberDoc created in `docs/rememberDocs/YYYY-MM-DD-task-slug.md`
+- [ ] RememberDoc path recorded in `tasks/todo.md`
 
 ## Anti-Patterns to Avoid
 

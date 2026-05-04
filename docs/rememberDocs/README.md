@@ -1,6 +1,6 @@
-# Remmerdocs
+# RememberDocs
 
-Store one remember note per completed task in this folder.
+Store one rememberDoc per completed task in this folder.
 
 Process:
 

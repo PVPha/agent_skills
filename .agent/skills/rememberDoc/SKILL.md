@@ -1,13 +1,13 @@
 ---
-name: remmerdoc
-description: Create concise post-task remmerdocs capturing what changed, why, validation status, and follow-ups. Use immediately after finishing a task or before handoff.
+name: rememberDoc
+description: Create concise post-task rememberDocs capturing what changed, why, validation status, and follow-ups. Use immediately after finishing a task or before handoff.
 ---
 
-# Remmerdoc Skill
+# RememberDoc Skill
 
 ## Overview
 
-Write a short "remmerdoc" immediately after finishing a task so future work is easier to resume, review, and hand off.
+Write a short "rememberDoc" immediately after finishing a task so future work is easier to resume, review, and hand off.
 
 ## Purpose
 
@@ -22,18 +22,18 @@ Capture what was done, why it was done, and what still needs attention while con
 
 ## Where to Store
 
-- This skill is the config source of truth for remmerdocs in this project
-- Save one file per task in `docs/remmerdocs/`
+- This skill is the config source of truth for rememberDocs in this project
+- Save one file per task in `docs/rememberDocs/`
 - Use naming: `YYYY-MM-DD-task-slug.md`
-- Start from `docs/remmerdocs/_template.md`
+- Start from `docs/rememberDocs/_template.md`
 - Keep entries short and factual
 
-## Remmerdoc Template
+## RememberDoc Template
 
 Use this template for every finished task:
 
 ```md
-# Remmerdoc: <task title>
+# RememberDoc: <task title>
 
 ## Summary
 <1-3 sentences of what changed>
@@ -71,7 +71,7 @@ Use this template for every finished task:
 
 ## Quality Checklist
 
-Before marking remmerdoc complete:
+Before marking rememberDoc complete:
 
 - [ ] Clear summary of delivered outcome
 - [ ] Verification result included
@@ -81,7 +81,7 @@ Before marking remmerdoc complete:
 ## Example
 
 ```md
-# Remmerdoc: Add retry for checkout timeout
+# RememberDoc: Add retry for checkout timeout
 
 ## Summary
 Added API timeout and retry behavior for checkout requests.
