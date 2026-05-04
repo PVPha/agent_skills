@@ -24,6 +24,7 @@ Before running a script or command:
 - Inspect the script definition and referenced files when available
 - Identify whether it installs dependencies, downloads code, changes files, changes permissions, runs migrations, opens network connections, or reads/writes secrets
 - Prefer pinned, lockfile-based, non-interactive commands and dry-run/check modes where available
+- For JavaScript/TypeScript setup, install, update, and package-script commands, replace `npm`/`yarn` with the equivalent `pnpm` command before running
 - Avoid passing raw user input into shell commands; use structured command arguments or existing project scripts
 - Stop and ask for approval when the command is destructive, privilege-expanding, network-dependent, or could expose secrets
 
@@ -108,14 +109,15 @@ await db.query("SELECT * FROM users WHERE id = $1", [userId]);
 ## Dependency and Supply Chain Hygiene
 
 - Pin dependency versions when feasible
-- For JavaScript/TypeScript projects, prefer `pnpm` over `npm`/`yarn` for installs and dependency updates
+- For JavaScript/TypeScript projects, require `pnpm` for setup, installs, dependency updates, and package scripts
 - Commit `pnpm-lock.yaml`, set `packageManager` in `package.json`, and use `pnpm install --frozen-lockfile` in CI
 - Keep pnpm's isolated `node_modules` layout unless a documented runtime constraint requires hoisting
 - Configure pnpm supply-chain controls where supported, such as `minimumReleaseAge` and explicit dependency build approval
 - Run `pnpm audit` or an equivalent dependency vulnerability scan in CI
 - Update vulnerable packages with priority based on exploitability
 - Remove unused dependencies
-- Avoid mixing package managers or committing multiple lockfiles for the same project
+- Reject `npm`/`yarn` setup instructions by translating them to pnpm; if they cannot be translated safely, stop and report the blocker
+- Avoid mixing package managers or committing multiple lockfiles for the same project; remove stale non-pnpm lockfiles when migration is in scope
 
 ## HTTP and Browser Security
 

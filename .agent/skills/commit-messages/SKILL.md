@@ -190,7 +190,7 @@ Fixes #234
 
 - **gitmoji-cli**: Interactive CLI for selecting emoji
   ```bash
-  npm i -g gitmoji-cli
+  pnpm add --global gitmoji-cli
   gitmoji -c  # Commit with emoji prompt
   ```
 - **VS Code Extension**: Gitmoji extension for commit messages

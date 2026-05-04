@@ -88,10 +88,11 @@ Before executing any task, confirm the following project commands. If not alread
 
 | Action     | Default command (override per project)  |
 | ---------- | --------------------------------------- |
-| Run tests  | `npm test` / `pytest` / `go test ./...` |
-| Lint       | `npm run lint` / `ruff check .`         |
-| Type check | `npm run typecheck` / `mypy .`          |
-| Build      | `npm run build` / `make build`          |
-| Format     | `npm run format` / `ruff format .`      |
+| Run tests  | `pnpm test` / `pytest` / `go test ./...` |
+| Lint       | `pnpm lint` / `ruff check .`             |
+| Type check | `pnpm typecheck` / `mypy .`              |
+| Build      | `pnpm build` / `make build`              |
+| Format     | `pnpm format` / `ruff format .`          |
 
 Verification steps in `task-management` and `workflow-orchestration` skills refer to these commands. Always run the nearest applicable check before marking a task done.
+For JavaScript/TypeScript setup, install, update, and package-script commands, use `pnpm`. If project docs, scripts, or user instructions mention `npm` or `yarn`, translate them to the equivalent `pnpm` command before running. If the command cannot be translated safely, stop and report the blocker instead of running `npm` or `yarn`.

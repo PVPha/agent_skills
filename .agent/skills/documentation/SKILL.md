@@ -122,9 +122,9 @@ Brief description of what this project does and why it exists.
 ```bash
 git clone https://github.com/org/project
 cd project
-npm install
+pnpm install
 cp .env.example .env
-npm run db:migrate
+pnpm db:migrate
 ```
 ````
 
@@ -132,10 +132,10 @@ npm run db:migrate
 
 ```bash
 # Development
-npm run dev
+pnpm dev
 
 # Production
-npm run build && npm start
+pnpm build && pnpm start
 ```
 
 ## Configuration
