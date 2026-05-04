@@ -22,7 +22,9 @@ jobs:
 
           zip -r release/agent_setup.zip \
             .agent/ \
-            docs/ \
+            docs/rememberDocs/_template.md \
+            docs/rememberDocs/README.md \
+            docs/mvp-plan.md \
             tasks/ \
             AGENTS.md
 
