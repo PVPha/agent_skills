@@ -54,7 +54,7 @@ Use this table to select skills from the user request. When multiple rows match,
 | Any code implementation or editing                          | `coding-standards`, `clean-code`                                       |
 | Naming variables, functions, files, or APIs                 | `naming-conventions`                                                   |
 | Handling errors, retries, or failure paths                  | `error-handling`                                                       |
-| Authentication, authorization, secrets, or input validation | `security`                                                             |
+| Authentication, authorization, secrets, input validation, security-sensitive commands, or terminal scripts | `security`                                                             |
 | Writing or running tests                                    | `testing`                                                              |
 | Reviewing a pull request or diff                            | `code-review`                                                          |
 | Writing commits                                             | `commit-messages`                                                      |
@@ -74,6 +74,7 @@ These skill combinations must always be loaded together:
 ### Quick examples
 
 - "Build a login feature" → `mvp-planning`, `workflow-orchestration`, `task-management`, `rememberDoc`, `coding-standards`, `clean-code`, `security`
+- "Run this setup script" → inspect the script and load `security` before execution
 - "Refactor the payment module" → `clean-code`, `coding-standards`, `code-review`, `task-management`, `rememberDoc`
 - "Review this PR" → `code-review`
 - "Write a commit message" → `commit-messages`

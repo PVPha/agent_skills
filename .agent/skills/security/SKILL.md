@@ -1,6 +1,6 @@
 ---
 name: security
-description: Apply secure-by-default engineering practices for input validation, authz, secrets, dependencies, and hardening. Use when designing, implementing, or reviewing security-sensitive code.
+description: Apply secure-by-default engineering practices for input validation, authz, secrets, dependencies, terminal script execution, and hardening. Use when designing, implementing, reviewing, or running security-sensitive code, scripts, commands, installs, migrations, deployments, or secret-handling workflows.
 ---
 
 # Security Skill
@@ -8,6 +8,24 @@ description: Apply secure-by-default engineering practices for input validation,
 ## Overview
 
 Design, implement, and review code with secure-by-default practices that reduce exploitable risk in application and infrastructure code.
+
+## Mandatory Trigger Points
+
+Load this skill before:
+
+- Running terminal scripts or package scripts, especially `npm`, `pnpm`, `yarn`, shell, Python, Ruby, Go, migration, seed, deploy, or setup scripts
+- Installing, updating, or executing dependencies
+- Running commands that use network access, secrets, environment variables, credentials, tokens, SSH keys, cloud CLIs, databases, or production-like services
+- Running destructive or permission-changing commands such as delete, reset, chmod/chown, migration rollback, cleanup, prune, or force operations
+- Designing, implementing, reviewing, or debugging anything related to authentication, authorization, input validation, secrets, dependency security, sandboxing, encryption, injection defense, or browser security
+
+Before running a script or command:
+
+- Inspect the script definition and referenced files when available
+- Identify whether it installs dependencies, downloads code, changes files, changes permissions, runs migrations, opens network connections, or reads/writes secrets
+- Prefer pinned, lockfile-based, non-interactive commands and dry-run/check modes where available
+- Avoid passing raw user input into shell commands; use structured command arguments or existing project scripts
+- Stop and ask for approval when the command is destructive, privilege-expanding, network-dependent, or could expose secrets
 
 ## Core Principles
 
@@ -90,9 +108,14 @@ await db.query("SELECT * FROM users WHERE id = $1", [userId]);
 ## Dependency and Supply Chain Hygiene
 
 - Pin dependency versions when feasible
-- Run dependency vulnerability scans in CI
+- For JavaScript/TypeScript projects, prefer `pnpm` over `npm`/`yarn` for installs and dependency updates
+- Commit `pnpm-lock.yaml`, set `packageManager` in `package.json`, and use `pnpm install --frozen-lockfile` in CI
+- Keep pnpm's isolated `node_modules` layout unless a documented runtime constraint requires hoisting
+- Configure pnpm supply-chain controls where supported, such as `minimumReleaseAge` and explicit dependency build approval
+- Run `pnpm audit` or an equivalent dependency vulnerability scan in CI
 - Update vulnerable packages with priority based on exploitability
 - Remove unused dependencies
+- Avoid mixing package managers or committing multiple lockfiles for the same project
 
 ## HTTP and Browser Security
 

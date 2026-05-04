@@ -13,7 +13,7 @@ A comprehensive collection of coding best practices and skills for AI coding age
 | [Documentation](documentation/SKILL.md)           | Comments, README templates, API docs, and ADRs                        |
 | [Testing](testing/SKILL.md)                       | Unit/integration testing, mocking, and test organization              |
 | [Error Handling](error-handling/SKILL.md)         | Error types, try-catch patterns, logging, and recovery                |
-| [Security](security/SKILL.md)                     | Secure coding practices, authz checks, secret handling, and hardening |
+| [Security](security/SKILL.md)                     | Secure coding practices, terminal script review, secret handling, and hardening |
 | [MVP Planning](mvp-planning/SKILL.md)             | Define MVP scope, write user stories, and break work into executable tasks |
 | [RememberDoc](rememberDoc/SKILL.md)                   | Post-task completion notes for summary, validation, and follow-ups     |
 | [Clean Code](clean-code/SKILL.md)                 | Practical rules for writing readable, maintainable, low-risk code      |
@@ -64,6 +64,7 @@ Arrange → Act → Assert
 
 - Validate all untrusted input at boundaries
 - Enforce least privilege and deny-by-default authorization
+- Inspect security-sensitive terminal scripts before running them
 - Keep secrets out of source and logs
 - Use parameterized queries and safe output encoding
 
