@@ -15,6 +15,7 @@ This is a planning-only skill.
 
 - Do not implement code, run implementation checks, or execute fix loops while using this skill.
 - Produce planning artifacts only (project spec, scope, stories, tasks, sequencing, checkpoints).
+- Write durable planning artifacts to `docs/mvp-plan.md` and `tasks/todo.md`; do not rely on chat-only plans as the source of truth.
 - If implementation is requested, finish this planning output first, then ask for confirmation before switching to an implementation workflow.
 
 ## Purpose
@@ -105,7 +106,20 @@ Output rule:
 - Transition gate after Q&A:
   1. Output `Project Spec (Filled)`.
   2. Output `Step 1` through `Step 7` sections in order.
-  3. End with `Planning complete. Ready to implement if you want to proceed.`
+  3. Write the filled project spec and MVP plan to `docs/mvp-plan.md`.
+  4. Write the implementation session board to `tasks/todo.md`, including session goal, first active task, queue, done criteria, and story-to-task mapping.
+  5. Confirm in the response that both files were updated.
+  6. End with `Planning complete. Ready to implement if you want to proceed.`
+
+## Durable Artifact Gate
+
+Before leaving planning mode or responding to "proceed":
+
+- `docs/mvp-plan.md` must contain the approved project description, filled spec, outcome, scope, stories, tasks, dependencies, sprint plan, risks, and assumptions.
+- `tasks/todo.md` must contain the active implementation task, queued tasks, done criteria, story-to-task mapping, and verification expectations.
+- Placeholder-only content such as `<product-name>`, `<task>`, or empty bullets does not satisfy this gate.
+- `implementation_plan.md` may summarize execution strategy for review, but it is not a substitute for `docs/mvp-plan.md` or `tasks/todo.md`.
+- If these files are missing, stale, or generic, update them first and only then switch to implementation skills.
 
 ## Step 1: Clarify Product Outcome
 

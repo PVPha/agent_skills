@@ -82,6 +82,15 @@ Verification: <test/manual/log check>
 
 Use `Queue` as the source of truth for upcoming work. Do not create hidden TODO lists outside this board.
 
+For a new project, initialize `tasks/todo.md` before implementation starts:
+
+- Set `Session Goal` from the approved MVP outcome.
+- Set `Active Task` to the first dependency-ready implementation task.
+- Set `Done Criteria` from the project verification expectations.
+- Fill `Queue` with the remaining implementation tasks in dependency order.
+- Fill `Story-to-Task Mapping` from `docs/mvp-plan.md`.
+- If the user says "proceed" and this board is still placeholder-only or stale, update the board before editing the codebase.
+
 ## Update Task
 
 Update task state whenever work status changes, using short factual entries:

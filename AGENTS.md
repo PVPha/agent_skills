@@ -16,6 +16,18 @@ If no skill matches, announce: `Using skill(s): none | source=.agent/skills/`
 
 If this line is missing, treat the run as invalid and retry.
 
+## New Project Planning Gate (blocking)
+
+When the user asks to build a new project, provides a new project description, or approves an implementation plan by saying "proceed" or equivalent:
+
+1. Load `mvp-planning`, `workflow-orchestration`, `task-management`, and `rememberDoc` before implementation skills.
+2. Treat `docs/mvp-plan.md` and `tasks/todo.md` as the durable planning source of truth.
+3. Before asking for or accepting implementation approval, write the filled project spec, MVP scope, stories, tasks, dependencies, and sprint plan into `docs/mvp-plan.md`.
+4. Before asking for or accepting implementation approval, write the session goal, active first implementation task, queue, done criteria, and story-to-task mapping into `tasks/todo.md`.
+5. If an `implementation_plan.md` or chat-only implementation plan is created, treat it as a review artifact only. It must not replace `docs/mvp-plan.md` or `tasks/todo.md`.
+6. On "proceed", first verify that `docs/mvp-plan.md` and `tasks/todo.md` contain project-specific, non-placeholder content for the approved project. If either file is empty, stale, generic, or missing the approved scope, stop and update those files before creating or editing the codebase.
+7. Only after the durable planning files are current may the agent switch from planning to implementation.
+
 ## Commit Gate Contract (required after every task closure)
 
 After every task closure (commit + amend), output this line before proceeding:

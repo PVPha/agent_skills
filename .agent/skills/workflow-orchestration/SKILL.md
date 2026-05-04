@@ -28,6 +28,7 @@ Reduce delivery risk in complex tasks by making dependencies explicit, enforcing
 - If something goes sideways, stop and re-plan immediately
 - Use plan mode for verification sequencing, not only implementation sequencing
 - Write detailed specs upfront to reduce ambiguity
+- For new projects, do not treat a chat-only implementation plan as the project source of truth; persist the approved plan to `docs/mvp-plan.md` and `tasks/todo.md` before implementation begins.
 
 ### 2. Subagent Strategy
 
@@ -54,6 +55,9 @@ Reduce delivery risk in complex tasks by making dependencies explicit, enforcing
 ### 4a. Transition Gate
 
 - Treat "move to next task" as a stage-gate check
+- Treat "proceed" after a new-project plan as a stage-gate check from planning to implementation
+- Before implementing after "proceed", verify that `docs/mvp-plan.md` and `tasks/todo.md` contain current, project-specific planning content
+- If those files are missing, stale, or still placeholders, update them before creating or editing the codebase
 - Run self-review against `skills/code-review/SKILL.md` before leaving the current task
 - Stage and commit all task-related changes after verification passes
 - Write rememberDoc before handoff or queue advancement

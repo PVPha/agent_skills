@@ -98,18 +98,20 @@ Arrange → Act → Assert
 Use this sequence to combine the skills into one delivery flow:
 
 1. Define outcome and scope with [MVP Planning](mvp-planning/SKILL.md).
-2. Design stages, dependencies, and gates with [Workflow Orchestration](workflow-orchestration/SKILL.md).
-3. Execute one active task at a time using [Task Management](task-management/SKILL.md).
-4. Apply implementation quality skills while coding:
+2. Persist the approved project spec and MVP plan in `docs/mvp-plan.md`.
+3. Initialize the implementation board in `tasks/todo.md` before coding.
+4. Design stages, dependencies, and gates with [Workflow Orchestration](workflow-orchestration/SKILL.md).
+5. Execute one active task at a time using [Task Management](task-management/SKILL.md).
+6. Apply implementation quality skills while coding:
    [Naming Conventions](naming-conventions/SKILL.md),
    [Coding Standards](coding-standards/SKILL.md),
    [Clean Code](clean-code/SKILL.md),
    [Error Handling](error-handling/SKILL.md),
    [Security](security/SKILL.md).
-5. Verify with [Testing](testing/SKILL.md) and review with [Code Review](code-review/SKILL.md).
-6. Commit per [Commit Messages](commit-messages/SKILL.md).
-7. Document outcome in `docs/rememberDocs/` via [RememberDoc](rememberDoc/SKILL.md).
-8. Update user/developer docs with [Documentation](documentation/SKILL.md) when behavior changes.
+7. Verify with [Testing](testing/SKILL.md) and review with [Code Review](code-review/SKILL.md).
+8. Write the task rememberDoc in `docs/rememberDocs/` via [RememberDoc](rememberDoc/SKILL.md).
+9. Commit per [Commit Messages](commit-messages/SKILL.md), then amend the commit after writing the hash into the rememberDoc.
+10. Update user/developer docs with [Documentation](documentation/SKILL.md) when behavior changes.
 
 ## Usage
 

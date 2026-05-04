@@ -1,5 +1,9 @@
 # MVP Plan: <product-name>
 
+## Usage Gate
+
+For a new project, replace every placeholder in this file with the approved project spec before implementation starts. A chat-only plan or `implementation_plan.md` can support review, but it does not replace this durable MVP plan.
+
 ## Project Spec (Filled)
 
 ### Product Basics
