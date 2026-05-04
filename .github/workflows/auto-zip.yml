@@ -1,0 +1,32 @@
+name: Release ZIP
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release-zip:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create ZIP
+        run: |
+          mkdir -p release
+
+          zip -r release/agent_setup.zip \
+            .agent/ \
+            docs/ \
+            tasks/ \
+            AGENTS.md
+
+      - name: Create GitHub Release and upload ZIP
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/agent_setup.zip
