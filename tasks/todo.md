@@ -1,13 +1,13 @@
 ## Session Goal
-Set up commitlint to enforce the project commit-message skill format.
+Document how to set up and use the commitlint configuration.
 
 ## Active Task
-Configure commitlint for gitmoji conventional commits.
+Create a commitlint setup guide.
 
 ## Done Criteria
-- [x] Commitlint configuration added
-- [x] Package scripts and hook setup added
-- [x] Valid and invalid commit messages verified
+- [x] Setup guide explains install and hook activation
+- [x] Guide documents valid commit message format and examples
+- [x] Guide includes verification commands
 - [x] RememberDoc created and path recorded
 
 ## Queue
@@ -17,10 +17,10 @@ Configure commitlint for gitmoji conventional commits.
 - Consider adding CI commit-message validation if the release workflow expands.
 
 ## New Task Registration
-Task: Configure commitlint for gitmoji conventional commits
-Outcome: Commit messages can be checked against the local commit-message skill.
-Constraints: Use pnpm for JavaScript tooling and keep setup repo-local.
-Verification: Run commitlint against valid and invalid sample messages.
+Task: Create commitlint setup guide
+Outcome: Contributors can install, verify, and use commitlint consistently.
+Constraints: Use pnpm commands and align examples with the commit-message skill.
+Verification: Read the guide against package scripts and commitlint config.
 
 ## Story-to-Task Mapping
 - Story 1 -> T1, T2, T3
@@ -37,3 +37,14 @@ Status: Done
 Note: Commitlint config, pnpm scripts, Husky hook, and ignore rules added.
 Next: Commit task closure.
 RememberDoc: docs/rememberDocs/2026-05-22-commitlint-gitmoji-setup.md
+
+[09:34] Task: Create commitlint setup guide
+Status: Start
+Note: User requested setup documentation for commitlint.
+Next: Add docs/commitlint-setup.md.
+
+[09:38] Task: Create commitlint setup guide
+Status: Done
+Note: Added setup guide and verified example messages against Commitlint.
+Next: Commit task closure.
+RememberDoc: docs/rememberDocs/2026-05-22-commitlint-setup-guide.md
