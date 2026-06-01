@@ -7,8 +7,8 @@
 <problem or goal this task addressed>
 
 ## Files Changed
-- <path>: <what changed>
-- <path>: <what changed>
+- <repo-relative path>: <what changed>
+- <repo-relative path>: <what changed>
 
 ## Verification
 - Tests: <what was run + result>

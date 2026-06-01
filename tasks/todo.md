@@ -1,13 +1,13 @@
 ## Session Goal
-Document how to set up and use the commitlint configuration.
+Update rememberDoc guidance so file-change entries stay portable across devices.
 
 ## Active Task
-Create a commitlint setup guide.
+Require repository-relative paths in rememberDoc Files Changed entries.
 
 ## Done Criteria
-- [x] Setup guide explains install and hook activation
-- [x] Guide documents valid commit message format and examples
-- [x] Guide includes verification commands
+- [x] rememberDoc skill tells agents to use repository-relative file paths
+- [x] rememberDoc template reflects repository-relative path placeholders
+- [x] Verification completed
 - [x] RememberDoc created and path recorded
 
 ## Queue
@@ -17,6 +17,11 @@ Create a commitlint setup guide.
 - Consider adding CI commit-message validation if the release workflow expands.
 
 ## New Task Registration
+Task: Require relative paths in rememberDocs
+Outcome: Future rememberDocs list changed files with portable repository-relative paths instead of device-specific absolute paths.
+Constraints: Keep the skill concise and preserve the existing rememberDoc structure.
+Verification: Review the diff and run the nearest available project check.
+
 Task: Create commitlint setup guide
 Outcome: Contributors can install, verify, and use commitlint consistently.
 Constraints: Use pnpm commands and align examples with the commit-message skill.
@@ -48,3 +53,14 @@ Status: Done
 Note: Added setup guide and verified example messages against Commitlint.
 Next: Commit task closure.
 RememberDoc: docs/rememberDocs/2026-05-22-commitlint-setup-guide.md
+
+[09:34] Task: Require relative paths in rememberDocs
+Status: Start
+Note: User reported rememberDocs showing absolute file URLs with local device paths.
+Next: Update rememberDoc skill and template, then verify the diff.
+
+[09:35] Task: Require relative paths in rememberDocs
+Status: Done
+Note: Updated rememberDoc instructions and template to require repository-relative Files Changed paths.
+Next: Commit task closure.
+RememberDoc: docs/rememberDocs/2026-06-01-relative-paths-in-rememberdocs.md

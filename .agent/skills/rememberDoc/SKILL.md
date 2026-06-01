@@ -42,8 +42,8 @@ Use this template for every finished task:
 <problem or goal this task addressed>
 
 ## Files Changed
-- <path>: <what changed>
-- <path>: <what changed>
+- <repo-relative path>: <what changed>
+- <repo-relative path>: <what changed>
 
 ## Verification
 - Tests: <what was run + result>
@@ -65,7 +65,8 @@ Use this template for every finished task:
 - Keep it short and specific
 - Prefer bullet points over long paragraphs
 - Record facts, not guesses
-- Include exact file paths when possible
+- In `Files Changed`, always use repository-relative paths such as `src/App.tsx`; never use absolute, `file://`, user-home, workspace-root, or device-specific paths
+- Use absolute paths only when documenting an external dependency outside the repository, and explain why that outside path matters
 - List unresolved items explicitly
 - After writing the file, record its path in `tasks/todo.md` so task handoff is visible from the session board
 
