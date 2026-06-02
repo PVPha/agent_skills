@@ -21,7 +21,7 @@ jobs:
           mkdir -p release
 
           zip -r release/agent_setup.zip \
-            .agent/ \
+            .agents/ \
             docs/rememberDocs/_template.md \
             docs/rememberDocs/README.md \
             docs/mvp-plan.md \
