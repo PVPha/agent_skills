@@ -1,0 +1,1 @@
+MAC: curl -L "https://github.com/PVPha/agent_skills/releases/download/v1.0.3/agent_setup.zip" -o "agent_setup.zip" && unzip -o "agent_setup.zip" && rm "agent_setup.zip"
