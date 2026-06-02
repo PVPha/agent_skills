@@ -2,13 +2,13 @@
 
 Before any analysis, plan, tool call, or code edit, the agent must:
 
-1. Read skills only from `.agent/skills/` (no skill discovery scan).
+1. Read skills only from `.agents/skills/` (no skill discovery scan).
 2. Select matching skill(s) from the user request using the table below.
 3. Open each selected `SKILL.md`.
-4. Announce: `Using skill(s): <names> | source=.agent/skills/`
+4. Announce: `Using skill(s): <names> | source=.agents/skills/`
 
 If step 1-4 is not completed, the agent must stop and do it first.
-If no skill matches, announce: `Using skill(s): none | source=.agent/skills/`
+If no skill matches, announce: `Using skill(s): none | source=.agents/skills/`
 
 ## Output Contract (first line required)
 
@@ -20,7 +20,7 @@ If this line is missing, treat the run as invalid and retry.
 
 When the user asks to build a new project, provides a new project description, or approves an implementation plan by saying "proceed" or equivalent:
 
-1. Load `mvp-planning`, `workflow-orchestration`, `task-management`, and `rememberDoc` before implementation skills.
+1. Load `mvp-planning`, `workflow-orchestration`, `task-management`, and `remember-doc` before implementation skills.
 2. Treat `docs/mvp-plan.md` and `tasks/todo.md` as the durable planning source of truth.
 3. Before asking for or accepting implementation approval, write the filled project spec, MVP scope, stories, tasks, dependencies, and sprint plan into `docs/mvp-plan.md`.
 4. Before asking for or accepting implementation approval, write the session goal, active first implementation task, queue, done criteria, and story-to-task mapping into `tasks/todo.md`.
@@ -50,7 +50,7 @@ Use this table to select skills from the user request. When multiple rows match,
 | Trigger / Request Type                                      | Load These Skills                                                      |
 | ----------------------------------------------------------- | ---------------------------------------------------------------------- |
 | New feature, product, or project scoping                    | `mvp-planning`                                                         |
-| Multi-step work with dependencies or stages                 | `workflow-orchestration`, `task-management`, `rememberDoc`             |
+| Multi-step work with dependencies or stages                 | `workflow-orchestration`, `task-management`, `remember-doc`            |
 | Any code implementation or editing                          | `coding-standards`, `clean-code`                                       |
 | Naming variables, functions, files, or APIs                 | `naming-conventions`                                                   |
 | Handling errors, retries, or failure paths                  | `error-handling`                                                       |
@@ -59,26 +59,26 @@ Use this table to select skills from the user request. When multiple rows match,
 | Reviewing a pull request or diff                            | `code-review`                                                          |
 | Writing commits                                             | `commit-messages`                                                      |
 | Writing docs, READMEs, comments, or ADRs                    | `documentation`                                                        |
-| Finishing a task or switching to the next task              | `rememberDoc`, `task-management`                                       |
+| Finishing a task or switching to the next task              | `remember-doc`, `task-management`                                      |
 | Refactoring or improving existing code                      | `clean-code`, `coding-standards`, `code-review`                        |
 
 ### Default co-loading rules
 
 These skill combinations must always be loaded together:
 
-- `workflow-orchestration` → always co-load `task-management` + `rememberDoc`
-- `task-management` → always co-load `rememberDoc`
+- `workflow-orchestration` → always co-load `task-management` + `remember-doc`
+- `task-management` → always co-load `remember-doc`
 - Any code change → always co-load `coding-standards` + `clean-code`
-- Closing a task → always co-load `rememberDoc` + `task-management`
+- Closing a task → always co-load `remember-doc` + `task-management`
 
 ### Quick examples
 
-- "Build a login feature" → `mvp-planning`, `workflow-orchestration`, `task-management`, `rememberDoc`, `coding-standards`, `clean-code`, `security`
+- "Build a login feature" → `mvp-planning`, `workflow-orchestration`, `task-management`, `remember-doc`, `coding-standards`, `clean-code`, `security`
 - "Run this setup script" → inspect the script and load `security` before execution
-- "Refactor the payment module" → `clean-code`, `coding-standards`, `code-review`, `task-management`, `rememberDoc`
+- "Refactor the payment module" → `clean-code`, `coding-standards`, `code-review`, `task-management`, `remember-doc`
 - "Review this PR" → `code-review`
 - "Write a commit message" → `commit-messages`
-- "Fix this bug" → `clean-code`, `error-handling`, `task-management`, `rememberDoc`
+- "Fix this bug" → `clean-code`, `error-handling`, `task-management`, `remember-doc`
 
 ---
 

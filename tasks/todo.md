@@ -1,12 +1,13 @@
 ## Session Goal
-Update rememberDoc guidance so file-change entries stay portable across devices.
+Correct the repo-local agent setup path and normalize the remember-doc skill name.
 
 ## Active Task
-Require repository-relative paths in rememberDoc Files Changed entries.
+Rename agent setup folder and remember-doc skill.
 
 ## Done Criteria
-- [x] rememberDoc skill tells agents to use repository-relative file paths
-- [x] rememberDoc template reflects repository-relative path placeholders
+- [x] Agent setup folder is `.agents/skills/`
+- [x] Skill gate references `.agents/skills/`
+- [x] The remember-doc skill uses a kebab-case directory and frontmatter name
 - [x] Verification completed
 - [x] RememberDoc created and path recorded
 
@@ -26,6 +27,11 @@ Task: Create commitlint setup guide
 Outcome: Contributors can install, verify, and use commitlint consistently.
 Constraints: Use pnpm commands and align examples with the commit-message skill.
 Verification: Read the guide against package scripts and commitlint config.
+
+Task: Rename agent setup folder and remember-doc skill
+Outcome: Repo-local agent setup uses `.agents/skills/`, and the remember-doc skill no longer triggers camelCase naming warnings.
+Constraints: Preserve the rememberDoc artifact terminology for task notes and commit-gate output fields.
+Verification: Search for stale `.agent` paths and invalid `remember-doc` skill identifiers, then run the nearest available project check.
 
 ## Story-to-Task Mapping
 - Story 1 -> T1, T2, T3
@@ -64,3 +70,14 @@ Status: Done
 Note: Updated rememberDoc instructions and template to require repository-relative Files Changed paths.
 Next: Commit task closure.
 RememberDoc: docs/rememberDocs/2026-06-01-relative-paths-in-rememberdocs.md
+
+[13:04] Task: Rename agent setup folder and remember-doc skill
+Status: Start
+Note: User requested `.agent` -> `.agents` setup correction and rememberDoc skill-name warning fix.
+Next: Verify stale references, run project checks, then close with rememberDoc and commit.
+
+[13:04] Task: Rename agent setup folder and remember-doc skill
+Status: Done
+Note: Renamed the setup folder, normalized the remember-doc skill identifier, and verified stale references are gone.
+Next: Commit task closure.
+RememberDoc: docs/rememberDocs/2026-06-02-agent-setup-folder-and-remember-doc-skill.md

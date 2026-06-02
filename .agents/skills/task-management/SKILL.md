@@ -109,7 +109,7 @@ Note: <single factual line>
 Next: <immediate next action>
 ```
 
-When marked `Done`, store persistent notes per `skills/rememberDoc/SKILL.md` rules (`docs/rememberDocs/YYYY-MM-DD-task-slug.md`).
+When marked `Done`, store persistent notes per `skills/remember-doc/SKILL.md` rules (`docs/rememberDocs/YYYY-MM-DD-task-slug.md`).
 Record the created rememberDoc path in `tasks/todo.md` before moving the next queued item into `Active Task`.
 
 Treat a user message like "move to next task", "next task", or equivalent as a transition request, not as permission to skip finish steps. Before changing `Active Task`, finish the current task closure sequence unless the user explicitly says to abandon or defer it.
@@ -152,7 +152,7 @@ Repeat this loop per task:
 2. Implement smallest useful change
 3. Self-review the diff using `skills/code-review/SKILL.md` with emphasis on correctness, regressions, edge cases, and missing tests
 4. Run nearest verification (test/lint/manual check)
-5. Write rememberDoc per `skills/rememberDoc/SKILL.md`
+5. Write rememberDoc per `skills/remember-doc/SKILL.md`
 6. Commit immediately after self-review and verification pass
 7. Update queue and pick next task
 

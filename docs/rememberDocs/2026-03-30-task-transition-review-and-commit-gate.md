@@ -19,7 +19,7 @@ The existing workflow required commit-before-next-task, but it did not explicitl
 - Applied the rule at the workflow level instead of only one skill so task execution, orchestration, and review stay aligned.
 
 ## Follow-ups
-- [ ] Add a repo-local `.agent/skills/` directory or update `AGENTS.md` so the mandatory skill gate points at a real path.
+- [ ] Add a repo-local `.agents/skills/` directory or update `AGENTS.md` so the mandatory skill gate points at a real path.
 
 ## Risks / Notes
-- The repo-level `AGENTS.md` currently references `.agent/skills/`, but this workspace only contains `skills/`.
+- The repo-level `AGENTS.md` currently references `.agents/skills/`, but this workspace only contains `skills/`.

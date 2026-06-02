@@ -8,7 +8,7 @@ Added pnpm-specific controls for lockfile enforcement, isolated installs, supply
 The security skill needed explicit package-manager guidance to reduce supply-chain risk from dependency installation and update workflows.
 
 ## Files Changed
-- .agent/skills/security/SKILL.md: added pnpm-focused dependency and supply-chain hygiene guidance
+- .agents/skills/security/SKILL.md: added pnpm-focused dependency and supply-chain hygiene guidance
 - docs/rememberDocs/2026-05-04-security-pnpm-supply-chain.md: recorded the task outcome and verification
 
 ## Verification

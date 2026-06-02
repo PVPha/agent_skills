@@ -1,5 +1,5 @@
 ---
-name: rememberDoc
+name: remember-doc
 description: Create concise post-task rememberDocs capturing what changed, why, validation status, and follow-ups. Use immediately after finishing a task or before handoff.
 ---
 

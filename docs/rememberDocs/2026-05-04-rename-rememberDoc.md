@@ -1,17 +1,17 @@
 # RememberDoc: Rename rememberDoc spelling
 
 ## Summary
-Renamed the project workflow term to `rememberDoc` across project documentation, skill files, task tracking, and matching paths.
+Renamed the project workflow term to `remember-doc` across project documentation, skill files, task tracking, and matching paths.
 
 ## Why
 The old term was misspelled and appeared in both content and filenames, making the workflow terminology inconsistent with the requested spelling.
 
 ## Files Changed
-- `AGENTS.md`: updated skill gate, commit gate, examples, and co-loading rules to use `rememberDoc`
-- `.agent/skills/rememberDoc/SKILL.md`: renamed the skill path and updated the skill metadata/content
-- `.agent/skills/task-management/SKILL.md`: updated task closure instructions and paths
-- `.agent/skills/workflow-orchestration/SKILL.md`: updated transition gate wording
-- `.agent/skills/README.md`: updated skill table and workflow links
+- `AGENTS.md`: updated skill gate, commit gate, examples, and co-loading rules to use `remember-doc`
+- `.agents/skills/remember-doc/SKILL.md`: renamed the skill path and updated the skill metadata/content
+- `.agents/skills/task-management/SKILL.md`: updated task closure instructions and paths
+- `.agents/skills/workflow-orchestration/SKILL.md`: updated transition gate wording
+- `.agents/skills/README.md`: updated skill table and workflow links
 - `docs/rememberDocs/`: renamed the notes directory and updated historical note content
 - `tasks/todo.md`: updated completion checklist and rememberDoc path placeholder
 - `tasks/lessons.md`: updated workflow lesson wording

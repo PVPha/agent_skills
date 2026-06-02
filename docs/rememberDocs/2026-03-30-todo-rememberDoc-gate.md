@@ -7,9 +7,9 @@ Updated the repo-local workflow skills and `tasks/todo.md` so an agent cannot mo
 The task board template did not expose rememberDoc as a visible completion gate, so an agent could finish work, advance the queue, and forget the handoff note.
 
 ## Files Changed
-- .agent/skills/task-management/SKILL.md: added rememberDoc-path recording to done criteria and task closure sequence
-- .agent/skills/rememberDoc/SKILL.md: required recording the rememberDoc path in `tasks/todo.md`
-- .agent/skills/workflow-orchestration/SKILL.md: added rememberDoc-path recording to the transition gate
+- .agents/skills/task-management/SKILL.md: added rememberDoc-path recording to done criteria and task closure sequence
+- .agents/skills/remember-doc/SKILL.md: required recording the rememberDoc path in `tasks/todo.md`
+- .agents/skills/workflow-orchestration/SKILL.md: added rememberDoc-path recording to the transition gate
 - tasks/todo.md: added a rememberDoc checkpoint and progress-log field
 - tasks/lessons.md: captured the workflow correction
 

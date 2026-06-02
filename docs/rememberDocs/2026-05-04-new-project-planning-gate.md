@@ -9,10 +9,10 @@ The setup allowed an `implementation_plan.md` or chat-only plan to become the ef
 
 ## Files Changed
 - `AGENTS.md`: added the blocking New Project Planning Gate.
-- `.agent/skills/mvp-planning/SKILL.md`: required durable planning artifacts before implementation approval.
-- `.agent/skills/workflow-orchestration/SKILL.md`: made "proceed" a planning-to-implementation stage gate.
-- `.agent/skills/task-management/SKILL.md`: required initializing `tasks/todo.md` before implementation starts.
-- `.agent/skills/README.md`: updated the recommended workflow order.
+- `.agents/skills/mvp-planning/SKILL.md`: required durable planning artifacts before implementation approval.
+- `.agents/skills/workflow-orchestration/SKILL.md`: made "proceed" a planning-to-implementation stage gate.
+- `.agents/skills/task-management/SKILL.md`: required initializing `tasks/todo.md` before implementation starts.
+- `.agents/skills/README.md`: updated the recommended workflow order.
 - `docs/mvp-plan.md`: added a usage gate warning that placeholders must be replaced before implementation.
 - `tasks/lessons.md`: recorded the correction pattern.
 - `tasks/todo.md`: recorded the active task, verification expectations, and rememberDoc path.

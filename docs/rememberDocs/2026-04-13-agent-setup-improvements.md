@@ -10,8 +10,8 @@ The setup had a strong gate mechanism and workflow enforcement, but agents start
 - `AGENTS.md`: added skill selection table, co-loading rules, quick examples, and environment/tooling section
 - `tasks/todo.md`: replaced blank template with initialized live session board
 - `docs/mvp-plan.md`: replaced blank template with filled plan for the agent_skills project
-- `.agent/skills/dev-environment/SKILL.md`: new skill for discovering test/lint/build commands
-- `.agent/skills/README.md`: added `dev-environment` to skills table, added co-loading rules section, added step 0 to recommended workflow
+- `.agents/skills/dev-environment/SKILL.md`: new skill for discovering test/lint/build commands
+- `.agents/skills/README.md`: added `dev-environment` to skills table, added co-loading rules section, added step 0 to recommended workflow
 
 ## Verification
 - Tests: not applicable; documentation and configuration changes only

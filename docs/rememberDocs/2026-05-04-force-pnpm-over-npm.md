@@ -9,9 +9,9 @@ The workflow should consistently avoid npm/yarn in setup paths and enforce pnpm 
 
 ## Files Changed
 - AGENTS.md: changed default JS commands to pnpm and added a package-manager enforcement rule
-- .agent/skills/security/SKILL.md: made pnpm mandatory for JS/TS setup, installs, updates, and package scripts
-- .agent/skills/documentation/SKILL.md: changed README setup and run examples from npm to pnpm
-- .agent/skills/commit-messages/SKILL.md: changed the gitmoji global install example to pnpm
+- .agents/skills/security/SKILL.md: made pnpm mandatory for JS/TS setup, installs, updates, and package scripts
+- .agents/skills/documentation/SKILL.md: changed README setup and run examples from npm to pnpm
+- .agents/skills/commit-messages/SKILL.md: changed the gitmoji global install example to pnpm
 - docs/rememberDocs/2026-05-04-force-pnpm-over-npm.md: recorded the task outcome and verification
 
 ## Verification

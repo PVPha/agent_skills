@@ -7,7 +7,7 @@ Updated the rememberDoc skill and template so `Files Changed` entries use reposi
 Absolute paths make rememberDocs less portable across machines and can expose local workspace details.
 
 ## Files Changed
-- .agent/skills/rememberDoc/SKILL.md: added explicit guidance to use repository-relative paths and avoid absolute, `file://`, home, workspace-root, or device-specific paths
+- .agents/skills/remember-doc/SKILL.md: added explicit guidance to use repository-relative paths and avoid absolute, `file://`, home, workspace-root, or device-specific paths
 - docs/rememberDocs/_template.md: changed file placeholders to `<repo-relative path>`
 - tasks/todo.md: recorded the active task, completion status, and rememberDoc path
 

@@ -9,8 +9,8 @@ Terminal scripts can install dependencies, execute downloaded code, mutate files
 
 ## Files Changed
 - AGENTS.md: expanded the security trigger row and added a setup-script example
-- .agent/skills/security/SKILL.md: expanded metadata and added mandatory trigger points plus pre-command checks
-- .agent/skills/README.md: updated the security summary and quick reference
+- .agents/skills/security/SKILL.md: expanded metadata and added mandatory trigger points plus pre-command checks
+- .agents/skills/README.md: updated the security summary and quick reference
 - docs/rememberDocs/2026-05-04-security-terminal-script-trigger.md: recorded the task outcome and verification
 
 ## Verification
