@@ -5,6 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "prepare": "husky",
+    "sync:skills": "node scripts/sync-claude-skills.mjs",
     "commitlint": "commitlint --last --verbose",
     "commitlint:edit": "commitlint --edit"
   },

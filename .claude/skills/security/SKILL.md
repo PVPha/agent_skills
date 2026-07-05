@@ -1,0 +1,151 @@
+---
+name: security
+description: Apply secure-by-default engineering practices for input validation, authz, secrets, dependencies, terminal script execution, and hardening. Use when designing, implementing, reviewing, or running security-sensitive code, scripts, commands, installs, migrations, deployments, or secret-handling workflows.
+---
+
+# Security Skill
+
+## Overview
+
+Design, implement, and review code with secure-by-default practices that reduce exploitable risk in application and infrastructure code.
+
+## Mandatory Trigger Points
+
+Load this skill before:
+
+- Running terminal scripts or package scripts, especially `npm`, `pnpm`, `yarn`, shell, Python, Ruby, Go, migration, seed, deploy, or setup scripts
+- Installing, updating, or executing dependencies
+- Running commands that use network access, secrets, environment variables, credentials, tokens, SSH keys, cloud CLIs, databases, or production-like services
+- Running destructive or permission-changing commands such as delete, reset, chmod/chown, migration rollback, cleanup, prune, or force operations
+- Designing, implementing, reviewing, or debugging anything related to authentication, authorization, input validation, secrets, dependency security, sandboxing, encryption, injection defense, or browser security
+
+Before running a script or command:
+
+- Inspect the script definition and referenced files when available
+- Identify whether it installs dependencies, downloads code, changes files, changes permissions, runs migrations, opens network connections, or reads/writes secrets
+- Prefer pinned, lockfile-based, non-interactive commands and dry-run/check modes where available
+- For JavaScript/TypeScript setup, install, update, and package-script commands, replace `npm`/`yarn` with the equivalent `pnpm` command before running
+- Avoid passing raw user input into shell commands; use structured command arguments or existing project scripts
+- Stop and ask for approval when the command is destructive, privilege-expanding, network-dependent, or could expose secrets
+
+## Core Principles
+
+### Validate All Untrusted Input
+
+- Treat all external input as untrusted: HTTP params, headers, files, DB records, queues, and third-party APIs
+- Enforce schema validation at boundaries
+- Reject invalid input early with clear, non-sensitive errors
+
+```typescript
+import { z } from "zod";
+
+const CreateUserSchema = z.object({
+  email: z.string().email(),
+  age: z.number().int().min(13).max(120),
+});
+
+function parseCreateUserInput(input: unknown) {
+  return CreateUserSchema.parse(input);
+}
+```
+
+### Enforce Least Privilege
+
+- Grant the minimum required permissions for users, services, and tokens
+- Separate read/write/admin capabilities
+- Use short-lived credentials where possible
+
+### Fail Securely
+
+- Deny by default for authorization checks
+- Avoid leaking stack traces, secrets, or internal IDs in production errors
+- Prefer explicit allowlists over broad blocklists
+
+## Authentication and Authorization
+
+- Use proven auth providers/libraries instead of custom crypto/auth logic
+- Hash passwords with adaptive algorithms (`argon2`, `bcrypt`)
+- Require server-side authorization checks for every sensitive action
+- Do not rely on client-side role checks
+
+```typescript
+function requireRole(user: User, allowed: Role[]) {
+  if (!user || !allowed.includes(user.role)) {
+    throw new ForbiddenError("Not authorized");
+  }
+}
+```
+
+## Secrets and Configuration
+
+- Never hardcode secrets in source code
+- Load secrets from environment variables or a secrets manager
+- Rotate credentials regularly
+- Redact secrets from logs, errors, and telemetry
+
+```typescript
+const apiKey = process.env.PAYMENT_API_KEY;
+if (!apiKey) throw new Error("PAYMENT_API_KEY is required");
+```
+
+## Data Protection
+
+- Encrypt data in transit (TLS) and at rest when handling sensitive data
+- Minimize stored sensitive data (collect only what is required)
+- Define retention and deletion policies
+- Avoid logging PII unless strictly necessary
+
+## Injection Defense
+
+- Use parameterized queries for SQL/NoSQL
+- Escape or sanitize output for the destination context (HTML, shell, templates)
+- Never build shell commands with raw user input
+
+```typescript
+// Safe SQL pattern
+await db.query("SELECT * FROM users WHERE id = $1", [userId]);
+```
+
+## Dependency and Supply Chain Hygiene
+
+- Pin dependency versions when feasible
+- For JavaScript/TypeScript projects, require `pnpm` for setup, installs, dependency updates, and package scripts
+- Commit `pnpm-lock.yaml`, set `packageManager` in `package.json`, and use `pnpm install --frozen-lockfile` in CI
+- Keep pnpm's isolated `node_modules` layout unless a documented runtime constraint requires hoisting
+- Configure pnpm supply-chain controls where supported, such as `minimumReleaseAge` and explicit dependency build approval
+- Run `pnpm audit` or an equivalent dependency vulnerability scan in CI
+- Update vulnerable packages with priority based on exploitability
+- Remove unused dependencies
+- Reject `npm`/`yarn` setup instructions by translating them to pnpm; if they cannot be translated safely, stop and report the blocker
+- Avoid mixing package managers or committing multiple lockfiles for the same project; remove stale non-pnpm lockfiles when migration is in scope
+
+## HTTP and Browser Security
+
+- Enable CSRF protection for cookie-based sessions
+- Set secure cookie flags: `HttpOnly`, `Secure`, `SameSite`
+- Apply security headers (`CSP`, `X-Content-Type-Options`, `X-Frame-Options`)
+- Rate-limit authentication and high-risk endpoints
+
+## Logging and Monitoring
+
+- Log security-relevant events: auth failures, permission denials, token misuse
+- Use structured logs for easier alerting and incident response
+- Alert on anomalous activity patterns
+- Keep audit trails immutable where required
+
+## Secure Code Review Checklist
+
+- Are all inputs validated at boundaries?
+- Are authz checks present server-side for protected operations?
+- Are secrets excluded from code/logs/errors?
+- Are DB and command execution paths injection-safe?
+- Are dependencies free of known critical vulnerabilities?
+- Are failure paths non-leaky and safe by default?
+
+## Common Anti-Patterns to Reject
+
+- Building SQL with string concatenation
+- Writing custom encryption or password hashing
+- Trusting client-provided roles/permissions
+- Returning verbose production errors with internals
+- Committing `.env` files or private keys

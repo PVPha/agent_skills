@@ -2,7 +2,7 @@
 
 Before any analysis, plan, tool call, or code edit, the agent must:
 
-1. Read skills only from `.agents/skills/` (no skill discovery scan).
+1. Read skills only from `.agents/skills/` (no skill discovery scan). Claude Code may load the identical mirrored copies from `.claude/skills/`; treat them as the same source.
 2. Select matching skill(s) from the user request using the table below.
 3. Open each selected `SKILL.md`.
 4. Announce: `Using skill(s): <names> | source=.agents/skills/`

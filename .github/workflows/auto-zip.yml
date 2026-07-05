@@ -16,17 +16,22 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Create ZIP
-        run: |
-          mkdir -p release
+      - name: Sync Claude Code skill mirror
+        run: node scripts/sync-claude-skills.mjs
 
-          zip -r release/agent_setup.zip \
-            .agents/ \
-            docs/rememberDocs/_template.md \
-            docs/rememberDocs/README.md \
-            docs/mvp-plan.md \
-            tasks/ \
-            AGENTS.md
+      - name: Stage release contents
+        run: |
+          mkdir -p release stage/tasks stage/docs/rememberDocs stage/.claude
+
+          cp -r .agents stage/
+          cp -r .claude/skills stage/.claude/
+          cp AGENTS.md CLAUDE.md stage/
+          cp docs/mvp-plan.md stage/docs/
+          cp docs/rememberDocs/_template.md docs/rememberDocs/README.md stage/docs/rememberDocs/
+          cp templates/tasks/todo.md templates/tasks/lessons.md stage/tasks/
+
+      - name: Create ZIP
+        run: cd stage && zip -r ../release/agent_setup.zip .
 
       - name: Create GitHub Release and upload ZIP
         uses: softprops/action-gh-release@v2
