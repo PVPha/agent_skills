@@ -16,8 +16,8 @@ Reduce delivery risk in complex tasks by making dependencies explicit, enforcing
 ## Scope Boundaries
 
 - Use this skill for orchestration: sequencing, dependency control, stage transitions, and handoffs
-- For detailed task execution loops, use `.agents/skills/task-management/SKILL.md`
-- For code quality and elegance standards, use `.agents/skills/clean-code/SKILL.md`
+- For task execution loops, task closure, and rememberDocs, use `.agents/skills/task-management/SKILL.md`
+- For code quality and elegance standards, use `.agents/skills/coding-standards/SKILL.md`
 - For review depth and approval standards, use `.agents/skills/code-review/SKILL.md`
 
 ## Workflow Orchestration Directives
@@ -47,21 +47,15 @@ Reduce delivery risk in complex tasks by making dependencies explicit, enforcing
 ### 4. Verification Before Done
 
 - Never mark a task complete without evidence it works
-- Never transition to the next task without closing the current one with self-review, verification evidence, and a commit unless the user explicitly asks to defer it
 - Diff behavior between main and current changes when relevant
 - Run tests/checks and inspect logs when relevant
 - Record objective evidence in the workflow state or handoff notes
 
 ### 4a. Transition Gate
 
-- Treat "move to next task" as a stage-gate check
+- Treat "move to next task" as a stage-gate check: run the Task Closure Sequence in `.agents/skills/task-management/SKILL.md` before leaving the current task
 - Treat "proceed" after a new-project plan as a stage-gate check from planning to implementation
-- Before implementing after "proceed", verify that `docs/mvp-plan.md` and `tasks/todo.md` contain current, project-specific planning content
-- If those files are missing, stale, or still placeholders, update them before creating or editing the codebase
-- Run self-review against `.agents/skills/code-review/SKILL.md` before leaving the current task
-- Stage and commit all task-related changes after verification passes
-- Write rememberDoc before handoff or queue advancement
-- Record the rememberDoc path in `tasks/todo.md` before queue advancement
+- Before implementing after "proceed", verify that `docs/mvp-plan.md` and `tasks/todo.md` contain current, project-specific planning content; if missing, stale, or placeholders, update them first
 - If any gate fails, stay on the current task and resolve the gap first
 
 ### 5. Demand Elegance (Balanced)
@@ -196,11 +190,8 @@ Before progressing to release/handoff:
 Gate checklist:
 
 - [ ] Acceptance criteria met
-- [ ] Self-review completed
-- [ ] Tests/checks executed and reviewed
+- [ ] Task Closure Sequence completed per `.agents/skills/task-management/SKILL.md` (self-review, verification, rememberDoc, commit)
 - [ ] Evidence captured in workflow notes
-- [ ] RememberDoc path recorded in `tasks/todo.md`
-- [ ] Task-related changes committed
 - [ ] Rollback or mitigation path defined
 - [ ] Risks documented
 

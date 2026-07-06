@@ -14,9 +14,6 @@
 - Tests: <what was run + result>
 - Manual checks: <what was verified>
 
-## Commit
-- Hash: `<filled in after git commit --amend>`
-
 ## Decisions
 - <important decision + reason>
 

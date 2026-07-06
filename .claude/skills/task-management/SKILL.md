@@ -1,13 +1,13 @@
 ---
 name: task-management
-description: Manage coding work in short, outcome-driven loops with clear done criteria, verification, and commit checkpoints. Use when executing development tasks with active queue control.
+description: Manage coding work in short, outcome-driven loops with clear done criteria, verification, rememberDoc notes, and commit checkpoints. Use when executing development tasks, finishing a task, or switching to the next task.
 ---
 
 # Task Management Skill
 
 ## Overview
 
-Manage coding tasks in short, high-momentum loops without losing direction. This skill is for "vibe coding": moving fast while still finishing work cleanly.
+Manage coding tasks in short, high-momentum loops without losing direction. This skill owns the full task lifecycle: registration, execution, closure (self-review → verify → rememberDoc → commit), and queue advancement. It is the single source of truth for the task closure sequence and rememberDoc rules.
 
 ## Core Principles
 
@@ -67,12 +67,6 @@ When a new task appears during a session, register it immediately in the session
 
 For each newly registered task, capture a one-line definition:
 
-- Outcome: expected user/system change
-- Constraints: key limits or non-goals
-- Verification: fastest proof it works
-
-Quick registration template:
-
 ```md
 Task: <short task title>
 Outcome: <what changes>
@@ -98,7 +92,7 @@ Update task state whenever work status changes, using short factual entries:
 1. `Start`: move selected queue item into `Active Task`
 2. `Progress`: log notable milestone or scope adjustment
 3. `Blocked`: record blocker and either un-block or defer
-4. `Done`: self-review, verify, write rememberDoc, commit, then remove from `Active Task` and pull next from `Queue`
+4. `Done`: run the Task Closure Sequence below, then pull next from `Queue`
 
 Status update template:
 
@@ -109,10 +103,82 @@ Note: <single factual line>
 Next: <immediate next action>
 ```
 
-When marked `Done`, store persistent notes per `.agents/skills/remember-doc/SKILL.md` rules (`docs/rememberDocs/YYYY-MM-DD-task-slug.md`).
-Record the created rememberDoc path in `tasks/todo.md` before moving the next queued item into `Active Task`.
-
 Treat a user message like "move to next task", "next task", or equivalent as a transition request, not as permission to skip finish steps. Before changing `Active Task`, finish the current task closure sequence unless the user explicitly says to abandon or defer it.
+
+## Task Closure Sequence (canonical)
+
+This is the single canonical closure sequence. Other skills and gates reference it; do not restate it elsewhere. Use this exact order whenever a task is complete or the user asks to move on:
+
+1. Self-review your own diff against `.agents/skills/code-review/SKILL.md` (correctness, regressions, edge cases, missing tests) and fix any issues found
+2. Run the nearest verification (test/lint/manual check) and record the result — if verification fails, do not commit; fix or checkpoint separately
+3. Write the rememberDoc (rules below) in `docs/rememberDocs/YYYY-MM-DD-task-slug.md`
+4. Record the rememberDoc path in `tasks/todo.md`
+5. Commit everything in one commit: `git add -A && git commit` — the rememberDoc and board update are part of the task commit
+6. Output the `COMMIT_GATE` line (see `AGENTS.md`) with the real SHA printed by `git commit`
+7. Only then select the next task
+
+Commit rules:
+
+- One task = one small, single-purpose commit
+- Never amend the commit to write its own hash into the rememberDoc — amending changes the SHA, so the recorded hash would be stale; the hash belongs in the `COMMIT_GATE` line and git history only
+- Use non-interactive git commands
+- Follow `.agents/skills/commit-messages/SKILL.md` for message format:
+
+```bash
+git add -A
+git commit -m "<type>(<scope>): <subject>" -m "<why this change was needed>"
+```
+
+Closure checklist (verify before the commit in step 5):
+
+- [ ] Behavior works for main flow and obvious edge case
+- [ ] No debug code/log noise left behind
+- [ ] Tests or validation steps run and recorded
+- [ ] RememberDoc created and its path recorded in `tasks/todo.md`
+- [ ] Commit message explains what changed and why
+
+## RememberDoc Rules
+
+Write a short rememberDoc immediately after finishing a task — before switching tasks, ending a session, or handing off — so future work is easy to resume and review.
+
+- Save one file per task in `docs/rememberDocs/`, named `YYYY-MM-DD-task-slug.md`
+- Start from `docs/rememberDocs/_template.md`
+- Keep it short, factual, and bulleted — record facts, not guesses
+- In `Files Changed`, always use repository-relative paths (`src/App.tsx`); never absolute, `file://`, user-home, or device-specific paths. Absolute paths only for external dependencies outside the repo, with a note why
+- List unresolved items explicitly
+
+Template sections: Summary (1-3 sentences), Why, Files Changed, Verification, Decisions, Follow-ups, Risks / Notes.
+
+Quality check before closing: clear summary of the delivered outcome, verification result included, follow-ups captured, risks documented.
+
+Example:
+
+```md
+# RememberDoc: Add retry for checkout timeout
+
+## Summary
+Added API timeout and retry behavior for checkout requests.
+
+## Why
+Checkout failed silently on slow networks and users retried manually.
+
+## Files Changed
+- src/api/checkout.ts: added timeout + retry wrapper
+- tests/checkout.timeout.test.ts: added retry-path coverage
+
+## Verification
+- Tests: checkout timeout tests passing
+- Manual checks: simulated slow network, retry flow works
+
+## Decisions
+- Retry count fixed at 2 to avoid duplicate charge risk.
+
+## Follow-ups
+- [ ] Make retry count configurable
+
+## Risks / Notes
+- Very slow networks may still fail after retries.
+```
 
 ## Task Sizing for Vibe Coding
 
@@ -138,53 +204,16 @@ Use this order by default:
 4. Quality improvements (tests, refactors, docs)
 5. Nice-to-have polish
 
-When two tasks compete, choose the one with:
-
-- Lower risk
-- Faster validation
-- Higher user impact
+When two tasks compete, choose the one with lower risk, faster validation, and higher user impact.
 
 ## Execution Loop
 
-Repeat this loop per task:
+Repeat per task:
 
 1. Clarify task and done criteria in 1-3 lines
 2. Implement smallest useful change
-3. Self-review the diff using `.agents/skills/code-review/SKILL.md` with emphasis on correctness, regressions, edge cases, and missing tests
-4. Run nearest verification (test/lint/manual check)
-5. Write rememberDoc per `.agents/skills/remember-doc/SKILL.md`
-6. Commit immediately after self-review and verification pass
-7. Update queue and pick next task
-
-### Commit Rules
-
-- Do not start the next task before self-reviewing, verifying, writing rememberDoc, and committing the current one
-- If the user asks to move to the next task, first run the current task through the full closure sequence
-- If a task is done and the worktree contains task-related changes, stage and commit all of those changes before advancing
-- Prefer small, single-purpose commits (one task = one commit)
-- Use non-interactive git commands
-- Follow `.agents/skills/commit-messages/SKILL.md` as the source of truth for message format
-- Commit format:
-
-```bash
-git add -A
-git commit -m "<type>(<scope>): <subject>" -m "<why this change was needed>"
-```
-
-- If verification fails, do not commit; fix or checkpoint separately
-
-### Task Closure Sequence
-
-Use this exact order whenever a task is complete or the user asks to move on:
-
-1. Review your own diff against `.agents/skills/code-review/SKILL.md`
-2. Fix any issues found during self-review
-3. Run verification and record the result
-4. Write rememberDoc
-5. Record the rememberDoc path in `tasks/todo.md`
-6. Stage all task-related changes
-7. Commit all staged task-related changes
-8. Only then select the next task
+3. Run the Task Closure Sequence
+4. Update queue and pick next task
 
 ## Progress Logging
 
@@ -216,20 +245,6 @@ Tried: <what you attempted>
 Evidence: <error/test output summary>
 Next attempt: <single next experiment>
 ```
-
-## Definition of Done Checklist
-
-Before marking a task complete:
-
-- [ ] Behavior works for main flow
-- [ ] Obvious edge case handled
-- [ ] No debug code/log noise left behind
-- [ ] Self-review completed
-- [ ] Tests or validation steps run
-- [ ] Commit created for this task
-- [ ] Commit message explains what changed and why
-- [ ] RememberDoc created in `docs/rememberDocs/YYYY-MM-DD-task-slug.md`
-- [ ] RememberDoc path recorded in `tasks/todo.md`
 
 ## Anti-Patterns to Avoid
 

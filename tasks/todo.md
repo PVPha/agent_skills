@@ -1,14 +1,16 @@
 ## Session Goal
-Correct the repo-local agent setup path and normalize the remember-doc skill name.
+Remove redundancy from the agent setup and fix the commit-gate amend bug.
 
 ## Active Task
-Rename agent setup folder and remember-doc skill.
+<none>
 
 ## Done Criteria
-- [x] Agent setup folder is `.agents/skills/`
-- [x] Skill gate references `.agents/skills/`
-- [x] The remember-doc skill uses a kebab-case directory and frontmatter name
-- [x] Verification completed
+- [x] Commit gate no longer amends to inject a stale SHA
+- [x] Task closure sequence stated in exactly one place (task-management)
+- [x] clean-code + naming-conventions merged into coding-standards
+- [x] remember-doc skill folded into task-management
+- [x] Skill gate retry clause removed; gate scoped to task-shaped requests
+- [x] Pre-commit hook auto-syncs `.claude/skills/` mirror
 - [x] RememberDoc created and path recorded
 
 ## Queue
@@ -16,68 +18,26 @@ Rename agent setup folder and remember-doc skill.
 
 ## Parking Lot
 - Consider adding CI commit-message validation if the release workflow expands.
+- CI check that `.claude/skills/` matches `.agents/skills/`.
+- Claude Code hook to mechanically validate SKILL_GATE/COMMIT_GATE output lines.
 
 ## New Task Registration
-Task: Require relative paths in rememberDocs
-Outcome: Future rememberDocs list changed files with portable repository-relative paths instead of device-specific absolute paths.
-Constraints: Keep the skill concise and preserve the existing rememberDoc structure.
-Verification: Review the diff and run the nearest available project check.
-
-Task: Create commitlint setup guide
-Outcome: Contributors can install, verify, and use commitlint consistently.
-Constraints: Use pnpm commands and align examples with the commit-message skill.
-Verification: Read the guide against package scripts and commitlint config.
-
-Task: Rename agent setup folder and remember-doc skill
-Outcome: Repo-local agent setup uses `.agents/skills/`, and the remember-doc skill no longer triggers camelCase naming warnings.
-Constraints: Preserve the rememberDoc artifact terminology for task notes and commit-gate output fields.
-Verification: Search for stale `.agent` paths and invalid `remember-doc` skill identifiers, then run the nearest available project check.
+Task: Dedupe skills and fix commit gate
+Outcome: Setup loads ~half the instruction text per task, commit gate records real SHAs, mirror cannot drift.
+Constraints: Preserve rememberDoc artifact terminology and gate output contracts; do not rewrite historical rememberDocs.
+Verification: pnpm sync:skills runs clean; grep shows no stale references to removed skills or the amend flow.
 
 ## Story-to-Task Mapping
-- Story 1 -> T1, T2, T3
-- Story 2 -> T4, T5
+- Setup-efficiency review -> Dedupe skills and fix commit gate
 
 ## Progress Log
-[09:17] Task: Configure commitlint for gitmoji conventional commits
+[09:10] Task: Dedupe skills and fix commit gate
 Status: Start
-Note: No existing package.json or commitlint setup found.
-Next: Add commitlint config, package scripts, and commit hook.
+Note: User approved fixing all six findings from the setup review.
+Next: Rewrite AGENTS.md gates, merge quality skills, dedupe closure rules, add pre-commit sync.
 
-[09:29] Task: Configure commitlint for gitmoji conventional commits
+[09:25] Task: Dedupe skills and fix commit gate
 Status: Done
-Note: Commitlint config, pnpm scripts, Husky hook, and ignore rules added.
+Note: 13 skills -> 10, closure sequence canonical in task-management, amend flow removed, mirror auto-syncs on commit.
 Next: Commit task closure.
-RememberDoc: docs/rememberDocs/2026-05-22-commitlint-gitmoji-setup.md
-
-[09:34] Task: Create commitlint setup guide
-Status: Start
-Note: User requested setup documentation for commitlint.
-Next: Add docs/commitlint-setup.md.
-
-[09:38] Task: Create commitlint setup guide
-Status: Done
-Note: Added setup guide and verified example messages against Commitlint.
-Next: Commit task closure.
-RememberDoc: docs/rememberDocs/2026-05-22-commitlint-setup-guide.md
-
-[09:34] Task: Require relative paths in rememberDocs
-Status: Start
-Note: User reported rememberDocs showing absolute file URLs with local device paths.
-Next: Update rememberDoc skill and template, then verify the diff.
-
-[09:35] Task: Require relative paths in rememberDocs
-Status: Done
-Note: Updated rememberDoc instructions and template to require repository-relative Files Changed paths.
-Next: Commit task closure.
-RememberDoc: docs/rememberDocs/2026-06-01-relative-paths-in-rememberdocs.md
-
-[13:04] Task: Rename agent setup folder and remember-doc skill
-Status: Start
-Note: User requested `.agent` -> `.agents` setup correction and rememberDoc skill-name warning fix.
-Next: Verify stale references, run project checks, then close with rememberDoc and commit.
-
-[13:04] Task: Rename agent setup folder and remember-doc skill
-Status: Done
-Note: Renamed the setup folder, normalized the remember-doc skill identifier, and verified stale references are gone.
-Next: Commit task closure.
-RememberDoc: docs/rememberDocs/2026-06-02-agent-setup-folder-and-remember-doc-skill.md
+RememberDoc: docs/rememberDocs/2026-07-06-dedupe-skills-and-fix-commit-gate.md

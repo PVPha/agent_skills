@@ -6,8 +6,7 @@ A comprehensive collection of coding best practices and skills for AI coding age
 
 | Skill                                       | Description                                                           |
 | ------------------------------------------- | --------------------------------------------------------------------- |
-| [Naming Conventions](naming-conventions/SKILL.md) | Variable, function, class, and file naming standards across languages |
-| [Coding Standards](coding-standards/SKILL.md)     | Code structure, formatting, control flow, and security basics         |
+| [Coding Standards](coding-standards/SKILL.md)     | Structure, clean-code rules, naming conventions, formatting, control flow, and security basics |
 | [Commit Messages](commit-messages/SKILL.md)       | Conventional commits format, types, and best practices                |
 | [Code Review](code-review/SKILL.md)               | Review mindset, feedback patterns, and checklists                     |
 | [Documentation](documentation/SKILL.md)           | Comments, README templates, API docs, and ADRs                        |
@@ -15,9 +14,7 @@ A comprehensive collection of coding best practices and skills for AI coding age
 | [Error Handling](error-handling/SKILL.md)         | Error types, try-catch patterns, logging, and recovery                |
 | [Security](security/SKILL.md)                     | Secure coding practices, terminal script review, secret handling, and hardening |
 | [MVP Planning](mvp-planning/SKILL.md)             | Define MVP scope, write user stories, and break work into executable tasks |
-| [Task Management](task-management/SKILL.md)       | Outcome-driven task loops with done criteria, verification, and commits |
-| [RememberDoc](remember-doc/SKILL.md)                   | Post-task completion notes for summary, validation, and follow-ups     |
-| [Clean Code](clean-code/SKILL.md)                 | Practical rules for writing readable, maintainable, low-risk code      |
+| [Task Management](task-management/SKILL.md)       | Task loops with done criteria, verification, rememberDoc notes, and commit closure |
 | [Workflow Orchestration](workflow-orchestration/SKILL.md) | Coordinate multi-step engineering workflows with dependencies, gates, and handoffs |
 
 ## Quick Reference
@@ -75,6 +72,7 @@ Arrange → Act → Assert
 - Define done criteria first
 - Work in short implement/verify loops
 - Keep queue and parking-lot notes
+- Close every task with the canonical sequence: self-review → verify → rememberDoc → single commit
 
 ### Workflow Orchestration
 
@@ -91,7 +89,7 @@ Arrange → Act → Assert
 
 ### RememberDoc
 
-- Write a short post-task record after finishing work
+- Write a short post-task record after finishing work (rules live in [Task Management](task-management/SKILL.md))
 - Capture files changed, verification, and decisions
 - List follow-up items and known risks
 
@@ -105,15 +103,12 @@ Use this sequence to combine the skills into one delivery flow:
 4. Design stages, dependencies, and gates with [Workflow Orchestration](workflow-orchestration/SKILL.md).
 5. Execute one active task at a time using [Task Management](task-management/SKILL.md).
 6. Apply implementation quality skills while coding:
-   [Naming Conventions](naming-conventions/SKILL.md),
    [Coding Standards](coding-standards/SKILL.md),
-   [Clean Code](clean-code/SKILL.md),
    [Error Handling](error-handling/SKILL.md),
    [Security](security/SKILL.md).
 7. Verify with [Testing](testing/SKILL.md) and review with [Code Review](code-review/SKILL.md).
-8. Write the task rememberDoc in `docs/rememberDocs/` via [RememberDoc](remember-doc/SKILL.md).
-9. Commit per [Commit Messages](commit-messages/SKILL.md), then amend the commit after writing the hash into the rememberDoc.
-10. Update user/developer docs with [Documentation](documentation/SKILL.md) when behavior changes.
+8. Close the task per the Task Closure Sequence in [Task Management](task-management/SKILL.md): write the rememberDoc in `docs/rememberDocs/`, then commit once per [Commit Messages](commit-messages/SKILL.md) (no amend — the commit hash goes in the `COMMIT_GATE` line, not the rememberDoc).
+9. Update user/developer docs with [Documentation](documentation/SKILL.md) when behavior changes.
 
 ## Usage
 

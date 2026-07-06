@@ -10,7 +10,7 @@ A portable set of coding skills, workflow gates, and planning templates for AI c
 | OpenAI Codex | `AGENTS.md` | `.agents/skills/` | Native support (scans cwd up to repo root) |
 | Claude Code | `CLAUDE.md` (imports `AGENTS.md`) | `.claude/skills/` (auto-generated mirror) | Claude Code does not read `.agents/skills/` yet |
 
-`.agents/skills/` is the single source of truth. The `.claude/skills/` mirror is generated — after editing any skill, run:
+`.agents/skills/` is the single source of truth. The `.claude/skills/` mirror is regenerated automatically by the Husky `pre-commit` hook on every commit; to refresh it manually, run:
 
 ```bash
 pnpm sync:skills
@@ -36,7 +36,7 @@ The zip contains:
 
 - `AGENTS.md` — mandatory skill gate, planning gate, commit gate, and skill selection table
 - `CLAUDE.md` — Claude Code entry point importing `AGENTS.md`
-- `.agents/skills/` — the 13 skills (see the [skills overview](.agents/skills/README.md))
+- `.agents/skills/` — the 10 skills (see the [skills overview](.agents/skills/README.md))
 - `.claude/skills/` — mirror of the skills for Claude Code
 - `docs/mvp-plan.md`, `docs/rememberDocs/` — durable planning and task-note templates
 - `tasks/todo.md`, `tasks/lessons.md` — clean session board and lessons templates

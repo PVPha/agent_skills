@@ -1,36 +1,31 @@
 ---
 name: coding-standards
-description: Apply coding standards for structure, style, consistency, and maintainability across codebases. Use when writing new code or normalizing existing code to team standards.
+description: Write readable, maintainable, low-risk code — structure, naming, formatting, control flow, and clean-code rules in one place. Use when implementing, editing, refactoring, or naming anything in a codebase.
 ---
 
 # Coding Standards Skill
 
 ## Overview
 
-Write clean, maintainable, and efficient code by following these standards and best practices.
+Write code that is easy to read, easy to change, and hard to misuse. This is the single quality skill for implementation work: structure, clarity, naming, formatting, and control flow.
 
-## Code Structure Principles
+## Code Structure
 
 ### Single Responsibility
 
-Each function, class, or module should have one clear purpose.
+Each function, class, or module should have one clear purpose. Extract logic when a function mixes validation, transformation, and side effects.
 
 ```javascript
-// ❌ Bad: Multiple responsibilities
-function processUser(user) {
-  // Validate
+// ❌ Bad: validates, transforms, saves, emails, and logs in one function
+async function processUser(user) {
   if (!user.email) throw new Error('Invalid email');
-  // Transform
   user.email = user.email.toLowerCase();
-  // Save to DB
   await db.users.insert(user);
-  // Send email
   await sendWelcomeEmail(user);
-  // Log
   logger.info('User created');
 }
 
-// ✅ Good: Single responsibility
+// ✅ Good: focused units composed together
 function validateUser(user) {
   if (!user.email) throw new ValidationError('Email required');
 }
@@ -41,8 +36,7 @@ function normalizeUser(user) {
 
 async function createUser(user) {
   validateUser(user);
-  const normalized = normalizeUser(user);
-  return await userRepository.create(normalized);
+  return await userRepository.create(normalizeUser(user));
 }
 ```
 
@@ -50,142 +44,111 @@ async function createUser(user) {
 
 - Aim for 20-30 lines maximum
 - If a function needs a comment to explain a section, extract that section
-- Limit parameters to 3-4; use objects for more
+- Limit parameters to 3-4; use an options object for more
+
+### Make Side Effects Obvious
+
+- Separate pure logic from I/O
+- Keep mutation local and explicit; prefer immutable operations
 
 ```javascript
-// ❌ Bad: Too many parameters
-function createUser(name, email, age, address, phone, role, department) { }
+// ✅ Pure computation
+function calculateTotal(items) {
+  return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+}
 
-// ✅ Good: Use an options object
-function createUser(options: CreateUserOptions) { }
+// ✅ Side effect isolated
+async function saveOrder(order) {
+  return await db.orders.insert(order);
+}
 
-interface CreateUserOptions {
-  name: string;
-  email: string;
-  age?: number;
-  address?: Address;
-  phone?: string;
-  role?: UserRole;
-  department?: string;
+// ✅ Immutable update instead of mutating the argument
+function addItem(cart, item) {
+  return { ...cart, items: [...cart.items, item] };
 }
 ```
 
-### DRY (Don't Repeat Yourself)
+### DRY, but Not Premature Abstraction
 
-Extract common logic, but don't over-abstract prematurely.
+- Remove duplicated business rules quickly
+- Avoid creating abstractions before you see stable patterns
+- Duplicate small code once if abstraction would hide intent
 
 ```javascript
-// ❌ Bad: Duplicated logic
-function getActiveUsers() {
-  const users = await db.users.findAll();
-  return users.filter(u => u.status === 'active' && !u.deletedAt);
-}
-
-function getActiveAdmins() {
-  const users = await db.users.findAll();
-  return users.filter(u => u.status === 'active' && !u.deletedAt && u.role === 'admin');
-}
-
-// ✅ Good: Extract common logic
+// ✅ Extract the shared rule, keep call sites simple
 function isActiveUser(user) {
   return user.status === 'active' && !user.deletedAt;
 }
-
-function getActiveUsers() {
-  const users = await db.users.findAll();
-  return users.filter(isActiveUser);
-}
-
-function getActiveAdmins() {
-  const users = await db.users.findAll();
-  return users.filter(u => isActiveUser(u) && u.role === 'admin');
-}
 ```
 
-## Code Formatting
+### Prefer Composition
 
-### Consistency is Key
+- Build behavior from small functions/modules
+- Favor dependency injection over hard-coded globals
+- Make invalid states unrepresentable: validate at boundaries, constrain inputs with types/schemas/enums, fail fast with specific errors
 
-- Use automated formatters (Prettier, Black, gofmt)
-- Configure and commit formatting rules
-- Run formatters on save or pre-commit
+## Naming
 
-### Indentation and Spacing
+### General Principles
 
-```javascript
-// Use consistent indentation (2 or 4 spaces, not tabs)
-function example() {
-  if (condition) {
-    doSomething();
-  }
-}
+- Names reveal intent; prefer clarity over cleverness or brevity
+- Use domain terms, not generic names like `data`, `item`, `temp`, `doStuff`
+- Include units and constraints in names (`timeoutMs`, `maxRetries`)
+- Booleans read as positive facts (`isActive`, `hasPermission`, `canEdit` — never `isNotActive`)
+- No Hungarian notation (`strName`, `arrUsers`)
+- Avoid abbreviations unless universal (`id`, `url`, `http`); single letters only for loop counters
 
-// Add blank lines to separate logical sections
-function processOrder(order) {
-  // Validation
-  validateOrder(order);
+| Scope           | Length           | Example               |
+| --------------- | ---------------- | --------------------- |
+| Loop counter    | 1-2 chars        | `i`, `idx`            |
+| Local variable  | Short, clear     | `count`, `user`       |
+| Function/Method | Action + context | `calculateTotalPrice` |
+| Class/Type      | Noun phrase      | `UserProfileManager`  |
+| Global/Constant | Descriptive      | `MAX_RETRY_ATTEMPTS`  |
 
-  // Calculate totals
-  const subtotal = calculateSubtotal(order.items);
-  const tax = calculateTax(subtotal);
-  const total = subtotal + tax;
+### Case Conventions by Language
 
-  // Create record
-  return createOrderRecord(order, total);
-}
-```
+| Language  | Variables/functions | Classes/types | Constants | Private members |
+| --------- | ------------------- | ------------- | --------- | --------------- |
+| JS/TS     | `camelCase` | `PascalCase` | `SCREAMING_SNAKE_CASE` | `_prefix` or `#field` |
+| Python    | `snake_case` | `PascalCase` | `SCREAMING_SNAKE_CASE` | `_prefix` |
+| C#        | `camelCase` | `PascalCase` (interfaces `IThing`) | `PascalCase` | `_camelCase` fields |
+| Java      | `camelCase` | `PascalCase` | `SCREAMING_SNAKE_CASE` | — |
+| Go        | `camelCase` unexported | `PascalCase` exported | same rule as identifiers | lowercase = unexported |
 
-### Line Length
+Go acronyms keep consistent casing: `userID`, `httpClient` (not `userId`).
 
-- Keep lines under 80-120 characters
-- Break long lines logically
+### Context-Specific Names
 
-```javascript
-// ❌ Bad: Too long
-const result = someFunction(
-  parameter1,
-  parameter2,
-  parameter3,
-  parameter4,
-  parameter5,
-);
+- Event handlers: `handleClick`, `handleUserSubmit`
+- React components and their prop types: `UserProfileCard`, `UserProfileCardProps`; hooks use `use` prefix (`useUserProfile`)
+- Models/entities singular (`User`, `OrderItem`); collections/tables plural (`users`)
+- Requests/responses: `createUserRequest`, `userResponse`
 
-// ✅ Good: Break logically
-const result = someFunction(
-  parameter1,
-  parameter2,
-  parameter3,
-  parameter4,
-  parameter5,
-);
-```
+### Files and Directories
+
+| Type               | Convention              | Example                |
+| ------------------ | ----------------------- | ---------------------- |
+| Components (React) | PascalCase              | `UserProfile.tsx`      |
+| Modules (JS/TS)    | kebab-case              | `user-service.ts`      |
+| Python modules     | snake_case              | `user_service.py`      |
+| Tests              | Same as source + suffix | `user-service.test.ts` |
+| Directories        | kebab-case (snake_case for Python packages), grouped by feature/domain | `user-management/` |
+
+## Formatting
+
+- Use automated formatters (Prettier, Black, gofmt); commit the config and run on save or pre-commit
+- Consistent indentation (2 or 4 spaces, not tabs); blank lines between logical sections
+- Keep lines under 80-120 characters; break long lines logically
 
 ## Control Flow
 
-### Early Returns
+### Early Returns, Shallow Nesting
 
-Reduce nesting with early returns (guard clauses).
+Use guard clauses so the happy path stays visually dominant. Maximum 3 levels of indentation — extract functions if needed.
 
 ```javascript
-// ❌ Bad: Deep nesting
-function processPayment(order) {
-  if (order) {
-    if (order.items.length > 0) {
-      if (order.paymentMethod) {
-        // Process payment
-        return processPaymentGateway(order);
-      } else {
-        throw new Error("No payment method");
-      }
-    } else {
-      throw new Error("Empty order");
-    }
-  } else {
-    throw new Error("No order");
-  }
-}
-
-// ✅ Good: Early returns
+// ✅ Guard clauses instead of nested conditionals
 function processPayment(order) {
   if (!order) throw new Error("No order");
   if (order.items.length === 0) throw new Error("Empty order");
@@ -195,73 +158,33 @@ function processPayment(order) {
 }
 ```
 
-### Avoid Deep Nesting
-
-Maximum 3 levels of indentation. Extract functions if needed.
-
 ### Prefer Positive Conditions
 
 ```javascript
-// ❌ Bad
-if (!isNotFound) {
-}
-
-// ✅ Good
-if (isFound) {
-}
+// ❌ if (!isNotFound)
+// ✅ if (isFound)
 ```
 
 ## Data Handling
 
-### Immutability
-
-Prefer immutable data operations.
-
-```javascript
-// ❌ Bad: Mutating
-function addItem(cart, item) {
-  cart.items.push(item);
-  return cart;
-}
-
-// ✅ Good: Immutable
-function addItem(cart, item) {
-  return {
-    ...cart,
-    items: [...cart.items, item],
-  };
-}
-```
-
 ### Null Safety
 
-Handle null/undefined explicitly.
+Handle null/undefined explicitly:
 
 ```javascript
-// Use optional chaining
-const userName = user?.profile?.name;
+const userName = user?.profile?.name;        // optional chaining
+const displayName = userName ?? "Anonymous"; // nullish coalescing
 
-// Use nullish coalescing
-const displayName = userName ?? "Anonymous";
-
-// Guard against null in functions
 function greet(user) {
   if (!user) return "Hello, Guest";
   return `Hello, ${user.name}`;
 }
 ```
 
-## Async/Await Best Practices
+### Async/Await
 
 ```javascript
-// ✅ Use async/await over raw promises
-async function fetchUserData(userId) {
-  const user = await userService.getById(userId);
-  const orders = await orderService.getByUserId(userId);
-  return { user, orders };
-}
-
-// ✅ Parallel when independent
+// ✅ async/await over raw promises; parallelize independent calls
 async function fetchDashboard(userId) {
   const [user, orders, notifications] = await Promise.all([
     userService.getById(userId),
@@ -271,7 +194,7 @@ async function fetchDashboard(userId) {
   return { user, orders, notifications };
 }
 
-// ✅ Always handle errors
+// ✅ Always handle errors with context
 async function safeFetch(userId) {
   try {
     return await fetchUserData(userId);
@@ -286,25 +209,9 @@ async function safeFetch(userId) {
 
 ### Imports Order
 
-Group and order imports consistently:
-
-1. Built-in/Standard library
+1. Built-in/standard library
 2. External dependencies
-3. Internal/Local modules
-
-```javascript
-// Node.js built-ins
-import fs from "fs";
-import path from "path";
-
-// External packages
-import express from "express";
-import { z } from "zod";
-
-// Internal modules
-import { UserService } from "@/services/user";
-import { formatDate } from "./utils";
-```
+3. Internal/local modules
 
 ### File Structure
 
@@ -314,55 +221,50 @@ src/
 ├── services/       # Business logic
 ├── repositories/   # Data access
 ├── utils/          # Shared utilities
-├── types/          # TypeScript types
-├── hooks/          # React hooks
+├── types/          # Types
 ├── constants/      # App constants
 └── config/         # Configuration
 ```
 
-## Performance Considerations
+## Performance
 
-### Avoid Premature Optimization
-
-- Write clear code first
-- Measure before optimizing
-- Optimize bottlenecks, not everything
-
-### Common Performance Patterns
-
-```javascript
-// ✅ Use appropriate data structures
-const userMap = new Map(users.map((u) => [u.id, u])); // O(1) lookup
-const user = userMap.get(userId);
-
-// ✅ Avoid unnecessary work in loops
-const lowercaseTerms = searchTerms.map((t) => t.toLowerCase()); // Outside loop
-for (const item of items) {
-  if (lowercaseTerms.some((t) => item.name.toLowerCase().includes(t))) {
-    results.push(item);
-  }
-}
-
-// ✅ Debounce expensive operations
-const debouncedSearch = debounce(search, 300);
-```
+- Write clear code first; measure before optimizing; optimize bottlenecks, not everything
+- Use appropriate data structures (`Map` for O(1) lookup), hoist invariant work out of loops, debounce expensive operations
 
 ## Security Basics
 
 ```javascript
-// ✅ Never trust user input
-const sanitizedInput = sanitize(userInput);
-
-// ✅ Use parameterized queries
-await db.query("SELECT * FROM users WHERE id = $1", [userId]);
-
-// ❌ Never: String concatenation for queries
-await db.query(`SELECT * FROM users WHERE id = ${userId}`);
-
-// ✅ Validate and sanitize
+// ✅ Never trust user input — validate and sanitize at boundaries
 const schema = z.object({
   email: z.string().email(),
   age: z.number().min(0).max(150),
 });
 const validated = schema.parse(input);
+
+// ✅ Parameterized queries only — never string concatenation
+await db.query("SELECT * FROM users WHERE id = $1", [userId]);
 ```
+
+For anything beyond basics (authz, secrets, script execution), load `.agents/skills/security/SKILL.md`.
+
+## Pre-Merge Checklist
+
+- [ ] Names communicate purpose without extra comments
+- [ ] Functions are small and single-purpose
+- [ ] Control flow is shallow; happy path dominant
+- [ ] Side effects are explicit and isolated
+- [ ] Duplicate logic reduced at the right abstraction level
+- [ ] Nulls and errors handled explicitly with context
+- [ ] Tests cover core behavior and edge cases
+
+## Refactoring Triggers
+
+Refactor when you notice:
+
+- Same bug fixed in multiple places
+- Long functions with unrelated sections
+- Repeated conditionals for the same rule
+- Frequent changes touching many files for one behavior
+- Hard-to-test code due to mixed concerns
+
+Use incremental refactors: add tests, extract one unit, verify behavior, repeat.

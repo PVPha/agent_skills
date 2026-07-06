@@ -1,0 +1,2 @@
+pnpm sync:skills
+git add .claude/skills
