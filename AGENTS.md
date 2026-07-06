@@ -30,6 +30,7 @@ After every task closure, output this line before proceeding:
 `COMMIT_GATE: PASS | hash=<commit sha> | task=<task title> | rememberDoc=<path>`
 
 - The canonical closure sequence lives in `task-management` → "Task Closure Sequence". In short: write the rememberDoc first, then commit once with `git add -A && git commit` so the rememberDoc is part of the task commit.
+- The commit message MUST follow `commit-messages`: it starts with a gitmoji emoji (`<emoji> <type>(<scope>): <subject>`). A commit without the emoji does not pass this gate.
 - Do not amend the commit to write its own hash into the rememberDoc — amending changes the SHA, so the recorded hash would always be stale. The hash lives in this gate line and in git history only.
 - Hash must be the real SHA printed by `git commit` — no placeholders
 - If commit was skipped: `COMMIT_GATE: SKIP | reason=<why>` (only valid when `git status` is clean)
@@ -53,12 +54,13 @@ Use this table to select skills from the user request. When multiple rows match,
 | Reviewing a pull request or diff                            | `code-review`                                                          |
 | Writing commits                                             | `commit-messages`                                                      |
 | Writing docs, READMEs, comments, or ADRs                    | `documentation`                                                        |
-| Finishing a task or switching to the next task              | `task-management`                                                      |
+| Finishing a task or switching to the next task              | `task-management`, `commit-messages`                                   |
 | Refactoring or improving existing code                      | `coding-standards`, `code-review`                                      |
 
 ### Default co-loading rules
 
 - `workflow-orchestration` → always co-load `task-management` (it owns the task closure sequence and rememberDoc rules)
+- `task-management` → always co-load `commit-messages` (the closure sequence ends in a commit, and the message format lives there)
 - Any code change → always load `coding-standards`
 
 ### Quick examples

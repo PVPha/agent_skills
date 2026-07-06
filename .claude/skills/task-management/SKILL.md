@@ -120,13 +120,14 @@ This is the single canonical closure sequence. Other skills and gates reference 
 Commit rules:
 
 - One task = one small, single-purpose commit
+- The message MUST start with a gitmoji emoji (✨ 🐛 📝 ♻️ …) — a commit without one is invalid; see `.agents/skills/commit-messages/SKILL.md` for the full emoji/type table
 - Never amend the commit to write its own hash into the rememberDoc — amending changes the SHA, so the recorded hash would be stale; the hash belongs in the `COMMIT_GATE` line and git history only
 - Use non-interactive git commands
 - Follow `.agents/skills/commit-messages/SKILL.md` for message format:
 
 ```bash
 git add -A
-git commit -m "<type>(<scope>): <subject>" -m "<why this change was needed>"
+git commit -m "<emoji> <type>(<scope>): <subject>" -m "<why this change was needed>"
 ```
 
 Closure checklist (verify before the commit in step 5):

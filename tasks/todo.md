@@ -41,3 +41,9 @@ Status: Done
 Note: 13 skills -> 10, closure sequence canonical in task-management, amend flow removed, mirror auto-syncs on commit.
 Next: Commit task closure.
 RememberDoc: docs/rememberDocs/2026-07-06-dedupe-skills-and-fix-commit-gate.md
+
+[10:40] Task: Enforce gitmoji in task closure commits
+Status: Done
+Note: Closure commit template now includes <emoji>; AGENTS.md co-loads commit-messages with task-management and gates on gitmoji.
+Next: Cut a new release tag so the fixed zip ships to new projects.
+RememberDoc: docs/rememberDocs/2026-07-06-enforce-gitmoji-in-task-closure.md
